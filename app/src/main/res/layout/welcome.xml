@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#295CA0">
+
+  <!--  <android.support.v7.widget.Toolbar
+        android:id="@+id/tool3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+
+        android:background="#A0A0A0">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imgset"
+            android:scaleType="fitXY"
+            android:src="@drawable/bankofindia"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/tvappn"
+            android:textSize="20dp"/>
+
+    </android.support.v7.widget.Toolbar>-->
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="#55000000"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Welcome To..."
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:shadowColor="#FF8A00"
+            android:shadowDy="5"
+            android:shadowDx="0"/>
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bankofindia"
+            android:layout_margin="20dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="बैंक ऑफ़ इंडिया"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:shadowColor="#FF8A00"
+            android:shadowDy="5"
+            android:shadowDx="0"/>
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:text="Aadhaar Seeding System"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:shadowColor="#FF8A00"
+            android:shadowDy="5"
+            android:shadowDx="0" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_height="20dp"
+        android:layout_width="match_parent"
+        android:background="#FF8A00"/>
+
+
+
+</RelativeLayout>

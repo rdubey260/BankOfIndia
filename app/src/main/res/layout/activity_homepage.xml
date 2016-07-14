@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#003F8E"
+    tools:context="com.example.administrator.bankofindia.HomePageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+   <android.support.v7.widget.Toolbar
+        android:id="@+id/tool1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:background="#A0A0A0">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnset"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher"
+            />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home Page"
+            android:id="@+id/tvappn"
+            android:textSize="20dp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_below="@+id/tool1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvUName"
+            android:text="User Name"
+            android:ems="5"
+            android:textColor="#FFFFFF"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvuname"
+            android:text="USER NAME"
+            android:textColor="#FFFFFF"
+            />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDandT"
+            android:text="Date &amp; Time "
+            android:ems="5"
+            android:textColor="#FFFFFF"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDAT"
+            android:text="dd/T"
+
+            android:textColor="#FFFFFF"
+
+
+            />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/lin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      android:layout_marginTop="130dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+           android:gravity="center_horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <Button
+                    android:id="@+id/bt_first"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <Button
+
+                    android:id="@+id/bt_second"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <Button
+                    android:id="@+id/bt_third"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <Button
+
+                    android:id="@+id/bt_forth"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    </LinearLayout>
+        <View
+
+            android:layout_width="match_parent"
+            android:background="#FF8A00"
+            android:layout_height="20dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
