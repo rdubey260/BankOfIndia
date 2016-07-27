@@ -7,16 +7,10 @@
     android:background="#003F8E"
     tools:context="com.example.administrator.bankofindia.HomePageActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#55000000"
-       >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll">
+        android:orientation="vertical">
    <android.support.v7.widget.Toolbar
         android:id="@+id/tool1"
         android:layout_width="match_parent"
@@ -130,17 +124,13 @@
                 <Button
                     android:id="@+id/bt_first"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:hint="FRIST"
-                    />
+                    android:layout_height="100dp" />
 
                 <Button
 
                     android:id="@+id/bt_second"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:hint="SECOND"
-                    />
+                    android:layout_height="100dp" />
 
 
             </LinearLayout>
@@ -149,34 +139,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+
                 >
                 <Button
                     android:id="@+id/bt_third"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:hint="THIRD"
-                    />
+                    android:layout_height="100dp" />
 
                 <Button
+
                     android:id="@+id/bt_forth"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:hint="FORTH"
-                    />
+                    android:layout_height="100dp" />
 
 
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
     </LinearLayout>
-    </LinearLayout>
-
         <View
+
             android:layout_width="match_parent"
             android:background="#FF8A00"
             android:layout_height="20dp"
-            android:layout_alignBottom="@+id/ll"
+            android:layout_marginBottom="50dp"
             />
-    </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
