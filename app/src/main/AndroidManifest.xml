@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.bankofindia">
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <manifest package="com.example.administrator.bankofindia" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
@@ -15,34 +15,48 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <supports-screens
-        android:resizeable="true"
         android:smallScreens="true"
+        android:resizeable="true"
         android:normalScreens="true"
         android:largeScreens="true"
-        android:anyDensity="true"
-        />
+        android:anyDensity="true"/>
 
 
     <application
-
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:theme="@style/AppTheme"
         android:label="Bank of india"
-        android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity"
-           >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"
-                    />
+        android:icon="@drawable/ic_launcher"
+        android:allowBackup="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
-        <activity android:name=".LoginFormActivity"
-            />
-        <activity android:name=".HomePageActivity" />
-        <activity android:name=".CustomerVerificationActivity"></activity>
-    </application>
+    <activity android:name=".WelcomeActivity">
+
+
+    <intent-filter>
+
+    <action android:name="android.intent.action.MAIN"/>
+
+    <category android:name="android.intent.category.LAUNCHER"/>
+
+</intent-filter>
+
+</activity>
+
+    <activity android:name=".LoginFormActivity"/>
+
+    <activity android:name=".HomePageActivity"/>
+
+    <activity android:name=".CustomerVerificationActivity"/>
+
+    <activity android:name=".Aadhaarseedingactivity"/>
+
+    <activity
+        android:name=".Showseedingactivity"
+        android:theme="@style/AppTheme"
+        android:label="@string/title_activity_showseedingactivity"/>
+
+    <activity android:name=".AadhaarSeedingSearchActivity"/>
+
+</application>
 
 </manifest>
