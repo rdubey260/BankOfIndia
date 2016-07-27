@@ -44,10 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolseed"
-<<<<<<< HEAD
-=======
             android:background="#55000000"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
             android:orientation="vertical">
 
             <LinearLayout
@@ -73,11 +70,7 @@
 
                     <EditText
                         android:id="@+id/et_accountno_new"
-<<<<<<< HEAD
-                        android:layout_width="120dp"
-=======
                         android:layout_width="140dp"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext1"
                         android:hint="Enter Account No"
@@ -114,11 +107,7 @@
 
                     <EditText
                         android:id="@+id/et_customerid_new"
-<<<<<<< HEAD
-                        android:layout_width="120dp"
-=======
                         android:layout_width="140dp"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext1"
                         android:hint="Enter Customer Id"
@@ -139,13 +128,9 @@
                     android:id="@+id/btn_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:text="Search" />
-=======
                     android:text="Search"
                     android:background="@drawable/button_selector"
                     android:textColor="@color/White"/>
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
 
                 <TextView
                     android:id="@+id/tv_error"
@@ -194,14 +179,8 @@
 
                         <TextView
                             android:id="@+id/tv_name_new"
-<<<<<<< HEAD
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-
-=======
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                             android:background="@drawable/edittext1"
                             android:singleLine="true"
                             android:textColor="#ffffff"
@@ -233,14 +212,8 @@
 
                         <TextView
                             android:id="@+id/tv_mobileno_new"
-<<<<<<< HEAD
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-
-=======
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                             android:background="@drawable/edittext1"
                             android:singleLine="true"
                             android:textColor="#ffffff"
@@ -274,11 +247,7 @@
 
                         <TextView
                             android:id="@+id/tv_show_adhr_no"
-<<<<<<< HEAD
-                            android:layout_width="120dp"
-=======
                             android:layout_width="140dp"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext1"
                             android:singleLine="true"
@@ -337,11 +306,7 @@
 
                         <EditText
                             android:id="@+id/edt_show_adhr_name_new"
-<<<<<<< HEAD
-                            android:layout_width="120dp"
-=======
                             android:layout_width="140dp"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext1"
                             android:hint="Name in Aadhaar"
@@ -352,12 +317,6 @@
 
                             />
                     </LinearLayout>
-<<<<<<< HEAD
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></LinearLayout>
-=======
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
 
 
                 </LinearLayout>
@@ -385,11 +344,7 @@
 
                         <EditText
                             android:id="@+id/tv_show_adhr_no_new"
-<<<<<<< HEAD
-                            android:layout_width="120dp"
-=======
                             android:layout_width="140dp"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext1"
                             android:hint=" Enter Aadhar No"
@@ -397,11 +352,7 @@
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff"
                             android:textSize="11sp"
-<<<<<<< HEAD
-
-=======
                             android:maxLength="12"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                             />
                     </LinearLayout>
 
@@ -410,10 +361,6 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-
-=======
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                     android:padding="3dp"
 
                     >
@@ -422,54 +369,35 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/camera"
-<<<<<<< HEAD
-                        android:scaleType="fitXY"/>
-
-                    <TextView
-                        android:layout_marginLeft="2dp"
-                        android:textSize="11sp"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/White"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Capture Image "/>
-=======
                         />
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
 
                 </RelativeLayout>
-      <LinearLayout
-          android:padding="5dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:weightSum="2"
-          >
-          <Button
-              android:id="@+id/btn_save_new"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="Save"
-              android:layout_weight="1"
-<<<<<<< HEAD
-=======
-              android:background="@drawable/button_selector"
-              android:textColor="@color/White"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
-              />
+                <LinearLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    >
+                    <Button
+                        android:id="@+id/btn_save_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Save"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector"
+                        android:textColor="@color/White"
+                        />
 
-          <Button
-              android:id="@+id/btn_reset"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="Reset"
-              android:layout_weight="1"
-<<<<<<< HEAD
-=======
-              android:background="@drawable/button_selector"
-              android:textColor="@color/White"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
-              />
-      </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_reset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Reset"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector"
+                        android:textColor="@color/White"
+                        />
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
@@ -477,11 +405,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="20dp"
-<<<<<<< HEAD
-            android:layout_alignBottom="@+id/ln"
-=======
             android:layout_alignParentBottom="true"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
             android:background="#FF8A00" />
     </RelativeLayout>
 

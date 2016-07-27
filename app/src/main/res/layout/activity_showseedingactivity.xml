@@ -43,10 +43,9 @@
         android:layout_below="@+id/s_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
+
+
         android:background="#55000000"
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
         android:orientation="vertical">
 
        <HorizontalScrollView

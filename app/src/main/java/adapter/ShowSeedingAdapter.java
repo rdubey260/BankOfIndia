@@ -16,10 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
-import com.example.administrator.bankofindia.Constant;
-=======
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
 import com.example.administrator.bankofindia.JSONParser;
 import com.example.administrator.bankofindia.R;
 
@@ -48,10 +44,9 @@ public class ShowSeedingAdapter extends BaseAdapter {
     Context context;
     ProgressDialog pDialog;
     Reader in;
-<<<<<<< HEAD
-=======
+
     Dialog dialog;
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
+
 
     public ShowSeedingAdapter(Context context, ArrayList<UserDataInfoBean> userinfoList) {
         this.userinfoList = userinfoList;
@@ -97,15 +92,11 @@ public class ShowSeedingAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-<<<<<<< HEAD
-                final Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.dialog);
-                final EditText edtAdhrNo = (EditText) dialog.findViewById(R.id.et_dialog_adhr);
-=======
+
                 dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog);
-                 final EditText edtAdhrNo = (EditText) dialog.findViewById(R.id.et_dialog_adhr);
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
+                final EditText edtAdhrNo = (EditText) dialog.findViewById(R.id.et_dialog_adhr);
+
                 final EditText edtAdhrNoAsInAdr = (EditText) dialog.findViewById(R.id.et_no_per_adhr);
                 Button btnSave = (Button) dialog.findViewById(R.id.bt_dialog_save);
                 Button btnExit = (Button) dialog.findViewById(R.id.bt_diaog_exit);
@@ -177,11 +168,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
 
          //   String NewUrl = args[0];
             Map<String, String> params = new LinkedHashMap<>();
-<<<<<<< HEAD
-            params.put("Method", "UpdateMember");
-=======
             params.put("Method", "UpdateMemberForAll");
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
             params.put("AadhaarNo", args[0]);
             params.put("NewNameAsAadhaar", args[1]);
             params.put("AccountNo", args[2]);
@@ -215,11 +202,9 @@ public class ShowSeedingAdapter extends BaseAdapter {
             }
             URL url = null;
             try {
-<<<<<<< HEAD
-                url = new URL("http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?");
-=======
+
                 url = new URL("http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMemberForAll?");
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -315,10 +300,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
 
             if (json != null) {
                 Toast.makeText(context, json.toString(), Toast.LENGTH_LONG).show();
-<<<<<<< HEAD
-=======
                 dialog.dismiss();
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
 
             }
             pDialog.dismiss();

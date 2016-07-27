@@ -6,14 +6,13 @@
     android:background="@color/colorPrimaryDark"
     android:padding="10dp"
     >
-<<<<<<< HEAD
-=======
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:background="#55000000">
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,8 +68,8 @@
             android:ems="8"
             android:textSize="15sp"
             android:text="AADHAAR NUMBER"/>
-<<<<<<< HEAD
-=======
+
+
         </LinearLayout>
->>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
+
 </LinearLayout>
