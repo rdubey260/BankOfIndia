@@ -6,7 +6,16 @@
     android:padding="15dp"
     android:background="#003F8E"
     >
+<<<<<<< HEAD
 
+=======
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000"
+        android:orientation="vertical"
+        >
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +37,11 @@
             android:background="@drawable/linear_background">
             <EditText
                 android:id="@+id/et_dialog_adhr"
+<<<<<<< HEAD
                 android:layout_width="120dp"
+=======
+                android:layout_width="140dp"
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                 android:layout_height="wrap_content"
                 android:hint="Aadhaar No"
                 android:singleLine="true"
@@ -37,6 +50,10 @@
                 android:textColorHint="#ffffff"
                 android:textSize="13sp"
                 android:inputType="number"
+<<<<<<< HEAD
+=======
+                android:maxLength="12"
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                 />
         </LinearLayout>
 
@@ -63,7 +80,11 @@
             android:background="@drawable/linear_background">
             <EditText
                 android:id="@+id/et_no_per_adhr"
+<<<<<<< HEAD
                 android:layout_width="120dp"
+=======
+                android:layout_width="140dp"
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                 android:layout_height="wrap_content"
                 android:hint="Name as in Aadhaar"
                 android:singleLine="true"
@@ -109,8 +130,12 @@
 
 
     </LinearLayout>
+<<<<<<< HEAD
 
 
+=======
+    </LinearLayout>
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
 
 
 </LinearLayout>

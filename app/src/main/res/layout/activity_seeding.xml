@@ -37,6 +37,10 @@
     </android.support.v7.widget.Toolbar>
         <LinearLayout
             android:id="@+id/ln"
+<<<<<<< HEAD
+=======
+            android:background="#55000000"
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -188,6 +192,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search"
+<<<<<<< HEAD
+=======
+                android:background="@drawable/button_selector"
+                android:textColor="@color/White"
+>>>>>>> 26e9029a7e1c6f8eee9280a1cc0f77fcdf5bb66b
                 />
 
     </LinearLayout>
