@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="#003F8E"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_dialog_adhr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aadhaar No"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/linear_background">
+            <EditText
+                android:id="@+id/et_dialog_adhr"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="Aadhaar No"
+                android:singleLine="true"
+                android:background="@drawable/edittext1"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="13sp"
+                android:inputType="number"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_no_per_adhr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name as in Aadhaar"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/linear_background">
+            <EditText
+                android:id="@+id/et_no_per_adhr"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="Name as in Aadhaar"
+                android:singleLine="true"
+                android:background="@drawable/edittext1"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="13sp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_margin="10dp"
+        >
+
+     <Button
+         android:id="@+id/bt_diaog_exit"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:hint="Exit"
+         android:layout_weight="1"
+         />
+
+        <Button
+            android:id="@+id/bt_dialog_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Clear"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/bt_dialog_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Save"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -76,7 +76,6 @@
                         android:textColor="#ffffff"
                         android:paddingLeft="2dp"
                         android:clickable="true"
-                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVB NM "
                         android:inputType="textPersonName"
                         android:hint="Enter Your User Name"
                         android:lines="1" >
@@ -100,7 +99,6 @@
                             android:paddingLeft="2dp"
                             android:textColorHint="#ffffff"
                             android:textColor="#ffffff"
-                            android:inputType="number"
                             android:drawableLeft="@drawable/adhar_action"
                             android:hint="Enter Your Password" />
 
