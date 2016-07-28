@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.bankofindia.JSONParser;
 import com.example.administrator.bankofindia.R;
 
 import java.io.BufferedReader;
