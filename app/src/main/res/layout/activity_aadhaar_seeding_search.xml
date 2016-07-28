@@ -379,6 +379,7 @@
                     android:weightSum="2"
                     >
                     <Button
+                       android:layout_marginRight="3dp"
                         android:id="@+id/btn_save_new"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -389,6 +390,7 @@
                         />
 
                     <Button
+                        android:layout_marginLeft="3dp"
                         android:id="@+id/btn_reset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
