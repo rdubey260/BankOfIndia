@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
@@ -13,7 +13,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.bankofindia.R;
+
 
 public class WelcomeActivity extends AppCompatActivity {
 

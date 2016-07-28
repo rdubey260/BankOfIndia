@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 /**
  * Created by Administrator on 21-07-2016.

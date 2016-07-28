@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.administrator.bankofindia.R;
+
 
 public class HomePageActivity extends AppCompatActivity {
 

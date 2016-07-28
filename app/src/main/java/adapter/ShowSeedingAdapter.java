@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,7 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.bankofindia.R;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import activity.R;
 import bean.UserDataInfoBean;
 
 /**
@@ -93,6 +95,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
 
 
                 dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog);
                 final EditText edtAdhrNo = (EditText) dialog.findViewById(R.id.et_dialog_adhr);
 
@@ -129,8 +132,6 @@ public class ShowSeedingAdapter extends BaseAdapter {
                         String recordNo = userinfoList.get(position).getRecordNo();
 
                         //  JsonParams jsnp= new JsonParams(upDateAdarNo,upDateAdrName,"8841","1",accountNo,recordNo,"1","8");
-
-
                         //   String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?"+String.valueOf(jsnp);
                         // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
                         //  String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?ind=1&AadhaarNo="+upDateAdarNo+"&branchcd=8841&ZoneCode=1&AccountNo="+accountNo+"&NewNameAsAadhaar="+upDateAdrName+"&SourceType=1&UserCode=8&RecordNo="+recordNo;
@@ -153,7 +154,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
     }
 
     class UpdateUserData extends AsyncTask<String, Void, String> {
-        JSONParser jsonParser = new JSONParser();
+        //   JSONParser jsonParser = new JSONParser();
 
         @Override
         protected void onPreExecute() {
@@ -165,7 +166,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
         @Override
         protected String doInBackground(String... args) {
 
-         //   String NewUrl = args[0];
+            //   String NewUrl = args[0];
             Map<String, String> params = new LinkedHashMap<>();
             params.put("Method", "UpdateMemberForAll");
             params.put("AadhaarNo", args[0]);
@@ -244,52 +245,6 @@ public class ShowSeedingAdapter extends BaseAdapter {
             String response = sb.toString();
 
             return response;
-
-               /* JSONObject json = jsonParser.makeHttpRequest(Constant.LOGIN_URL, "PUT", params);
-               return json;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
-
-          /*  try {
-                InetAddress i = InetAddress.getByName(NewUrl);
-            } catch (UnknownHostException e1) {
-                e1.printStackTrace();
-            }*/
-
-         /*   HttpURLConnection ht = null;
-            try {
-                URL ur = new URL(NewUrl);
-                ht = (HttpURLConnection) ur.openConnection();
-                ht.setRequestMethod("PUT");
-                ht.connect();
-                int status = ht.getResponseCode();
-                switch (status) {
-                    case 200:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(ht.getInputStream()));
-                        StringBuilder sr = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sr.append(line + "\n");
-                        }
-                        br.close();
-                        return sr.toString();
-                }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (ht != null) {
-                    try {
-                        ht.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-
-         */
 
 
         }
