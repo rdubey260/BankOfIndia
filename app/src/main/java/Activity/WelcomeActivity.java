@@ -13,8 +13,11 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
 public class WelcomeActivity extends AppCompatActivity {
 
     ImageView imgLogo,imgset;
@@ -50,7 +53,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //            doubleBackToExitPressedOnce=false;
-                Intent icon_three = new Intent(getApplicationContext(), LoginFormActivity.class);
+                Intent icon_three = new Intent(getApplicationContext(),LoginFormActivity.class);
                 startActivity(icon_three);
                 //startActivity(icon_three);
                 finish();

@@ -20,8 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

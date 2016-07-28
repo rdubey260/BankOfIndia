@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
 
 
 
@@ -16,6 +21,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="Bank of india"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name="activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +38,35 @@
             android:label="@string/title_activity_showseedingactivity"
             android:theme="@style/AppTheme" />
         <activity android:name="activity.AadhaarSeedingSearchActivity" />
+=======
+
+
+        <activity android:name=".WelcomeActivity">
+
+
+        <intent-filter>
+
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+
+    </intent-filter>
+
+    </activity>
+
+        <activity android:name=".LoginFormActivity"/>
+
+        <activity android:name=".HomePageActivity"/>
+
+        <activity android:name=".CustomerVerificationActivity"/>
+
+        <activity android:name=".Aadhaarseedingactivity"/>
+
+        <activity android:name=".Showseedingactivity" android:theme="@style/AppTheme" android:label="@string/title_activity_showseedingactivity"/>
+
+        <activity android:name=".AadhaarSeedingSearchActivity"/>
+
+>>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
     </application>
 
 </manifest>
