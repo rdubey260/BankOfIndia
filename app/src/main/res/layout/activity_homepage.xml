@@ -54,26 +54,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:weightSum="2">
+        android:weightSum="4">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="3">
 
-        <TextView
+       <!-- <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvUName"
-            android:text="User Name"
+            android:text="Welcome"
             android:ems="5"
+            android:textSize="12sp"
             android:textColor="#FFFFFF"
-            />
+            />-->
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvuname"
             android:text="USER NAME"
+            android:textSize="12sp"
             android:textColor="#FFFFFF"
             />
         </LinearLayout>
@@ -83,21 +85,23 @@
         android:layout_weight="1"
         >
 
-        <TextView
+       <!-- <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvDandT"
             android:text="Date &amp; Time "
             android:ems="5"
+            android:textSize="12sp"
             android:textColor="#FFFFFF"
 
-            />
+            />-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvDAT"
             android:text="dd/T"
+            android:textSize="12sp"
             android:textColor="#FFFFFF"
 
 

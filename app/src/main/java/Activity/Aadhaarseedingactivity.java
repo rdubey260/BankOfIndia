@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.administrator.bankofindia.R;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;

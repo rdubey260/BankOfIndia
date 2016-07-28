@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +10,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.administrator.bankofindia.R;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HomePageActivity extends AppCompatActivity {
 
     Button btfirst,btsecond,btthird,btfourth;
-    TextView tvUName,tvuname,tvDAT,tvDandT;
+    TextView tvuname,tvDAT;
     Toolbar toolbar;
+    String dt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         tvuname = (TextView) findViewById(R.id.tvuname);
         tvDAT = (TextView) findViewById(R.id.tvDAT);
-        tvUName = (TextView) findViewById(R.id.tvUName);
+
+
+        Date cal = (Date) Calendar.getInstance().getTime();
+        dt = cal.toLocaleString();
+        tvDAT.setText(dt.toString());
+
+        tvuname.setText(getIntent().getStringExtra("mytext"));
 
         btfirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +60,7 @@ public class HomePageActivity extends AppCompatActivity {
         btsecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePageActivity.this,Aadhaarseedingactivity.class);
+                Intent i = new Intent(HomePageActivity.this, Aadhaarseedingactivity.class);
                 startActivity(i);
             }
         });
@@ -61,7 +69,7 @@ public class HomePageActivity extends AppCompatActivity {
         btthird.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePageActivity.this,AadhaarSeedingSearchActivity.class);
+                Intent i = new Intent(HomePageActivity.this, AadhaarSeedingSearchActivity.class);
                 startActivity(i);
             }
         });

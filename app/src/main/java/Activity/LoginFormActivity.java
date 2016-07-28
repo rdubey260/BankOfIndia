@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.administrator.bankofindia.R;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +41,7 @@ public class LoginFormActivity extends AppCompatActivity {
     String username;
     ProgressBar pbar;
     String UserName;
+    String UserFullName;
 
 
     @Override
@@ -209,7 +210,7 @@ public class LoginFormActivity extends AppCompatActivity {
 
                             JSONObject jsonObject = jsonArry.getJSONObject(i);
                             String UserCode = jsonObject.getString("UserCode");
-                            String UserFullName = jsonObject.getString("UserFullName");
+                            UserFullName = jsonObject.getString("UserFullName");
                             String BcCode = jsonObject.getString("BcCode");
                             String LevelCode = jsonObject.getString("LevelCode");
                             UserName = jsonObject.getString("UserName");
@@ -226,6 +227,7 @@ public class LoginFormActivity extends AppCompatActivity {
                         }
                         if (UserName.equalsIgnoreCase(username)) {
                             Intent in = new Intent(LoginFormActivity.this, HomePageActivity.class);
+                            in.putExtra("mytext",UserFullName);
                             startActivity(in);
                         }
                     //}

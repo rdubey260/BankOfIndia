@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-
-import com.example.administrator.bankofindia.R;
 
 public class CustomerVerificationActivity extends AppCompatActivity {
     Toolbar toolbar;

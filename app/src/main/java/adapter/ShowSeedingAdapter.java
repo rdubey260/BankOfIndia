@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.bankofindia.R;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import activity.R;
 import bean.UserDataInfoBean;
 
 /**
@@ -149,7 +150,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
     }
 
     class UpdateUserData extends AsyncTask<String, Void, String> {
-        JSONParser jsonParser = new JSONParser();
+        //JSONParser jsonParser = new JSONParser();
 
         @Override
         protected void onPreExecute() {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.bankofindia">
+    package="activity">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -8,12 +8,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
 
     <supports-screens
         android:anyDensity="true"
@@ -27,26 +23,33 @@
         android:icon="@drawable/ic_launcher"
         android:label="Bank of india"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".LoginFormActivity" />
-        <activity android:name=".HomePageActivity" />
-        <activity android:name=".CustomerVerificationActivity" />
-        <activity android:name=".Aadhaarseedingactivity" />
-        <activity
-            android:name=".Showseedingactivity"
-            android:label="@string/title_activity_showseedingactivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".AadhaarSeedingSearchActivity" />
-        <activity
-            android:name=".new_activity"
-            android:label="@string/title_activity_new_activity"
-            android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".WelcomeActivity">
+
+
+        <intent-filter>
+
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+
+    </intent-filter>
+
+    </activity>
+
+        <activity android:name=".LoginFormActivity"/>
+
+        <activity android:name=".HomePageActivity"/>
+
+        <activity android:name=".CustomerVerificationActivity"/>
+
+        <activity android:name=".Aadhaarseedingactivity"/>
+
+        <activity android:name=".Showseedingactivity" android:theme="@style/AppTheme" android:label="@string/title_activity_showseedingactivity"/>
+
+        <activity android:name=".AadhaarSeedingSearchActivity"/>
+
     </application>
 
 </manifest>

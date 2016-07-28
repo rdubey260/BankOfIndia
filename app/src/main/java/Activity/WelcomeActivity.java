@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
@@ -12,8 +12,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.administrator.bankofindia.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -50,7 +48,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //            doubleBackToExitPressedOnce=false;
-                Intent icon_three = new Intent(getApplicationContext(), LoginFormActivity.class);
+                Intent icon_three = new Intent(getApplicationContext(),LoginFormActivity.class);
                 startActivity(icon_three);
                 //startActivity(icon_three);
                 finish();
