@@ -16,12 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

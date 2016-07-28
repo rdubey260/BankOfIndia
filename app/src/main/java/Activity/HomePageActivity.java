@@ -9,13 +9,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-
-<<<<<<< HEAD
-
-=======
 import java.util.Calendar;
 import java.util.Date;
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
+
 
 public class HomePageActivity extends AppCompatActivity {
 

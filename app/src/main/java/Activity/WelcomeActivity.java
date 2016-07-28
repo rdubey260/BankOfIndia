@@ -13,11 +13,6 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
 public class WelcomeActivity extends AppCompatActivity {
 
     ImageView imgLogo,imgset;

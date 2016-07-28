@@ -8,12 +8,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
-
 
 
     <application
@@ -21,52 +15,36 @@
         android:icon="@drawable/ic_launcher"
         android:label="Bank of india"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name="activity.WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="activity.LoginFormActivity" />
-        <activity android:name="activity.HomePageActivity" />
-        <activity android:name="activity.CustomerVerificationActivity" />
-        <activity android:name="activity.Aadhaarseedingactivity" />
-        <activity
-            android:name="activity.Showseedingactivity"
-            android:label="@string/title_activity_showseedingactivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name="activity.AadhaarSeedingSearchActivity" />
-=======
 
 
         <activity android:name=".WelcomeActivity">
 
 
-        <intent-filter>
+            <intent-filter>
 
-        <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
 
-    </intent-filter>
+            </intent-filter>
 
-    </activity>
+        </activity>
 
-        <activity android:name=".LoginFormActivity"/>
+        <activity android:name=".LoginFormActivity" />
 
-        <activity android:name=".HomePageActivity"/>
+        <activity android:name=".HomePageActivity" />
 
-        <activity android:name=".CustomerVerificationActivity"/>
+        <activity android:name=".CustomerVerificationActivity" />
 
-        <activity android:name=".Aadhaarseedingactivity"/>
+        <activity android:name=".Aadhaarseedingactivity" />
 
-        <activity android:name=".Showseedingactivity" android:theme="@style/AppTheme" android:label="@string/title_activity_showseedingactivity"/>
+        <activity
+            android:name=".Showseedingactivity"
+            android:label="@string/title_activity_showseedingactivity"
+            android:theme="@style/AppTheme" />
 
-        <activity android:name=".AadhaarSeedingSearchActivity"/>
+        <activity android:name=".AadhaarSeedingSearchActivity" />
 
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
     </application>
 
 </manifest>

@@ -13,10 +13,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
 public class CustomerVerificationActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView ivClick;

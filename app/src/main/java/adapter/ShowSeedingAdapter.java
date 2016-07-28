@@ -154,11 +154,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
     }
 
     class UpdateUserData extends AsyncTask<String, Void, String> {
-<<<<<<< HEAD
-        //   JSONParser jsonParser = new JSONParser();
-=======
-        //JSONParser jsonParser = new JSONParser();
->>>>>>> 381936d93a6df694aeb6f8f6fd35f481aa2037f0
+
 
         @Override
         protected void onPreExecute() {
