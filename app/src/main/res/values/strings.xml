@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Bankofindia</string>
     <string name="title_activity_showseedingactivity">Showseedingactivity</string>
+    <string name="title_activity_new_activity">new_activity</string>
 </resources>
