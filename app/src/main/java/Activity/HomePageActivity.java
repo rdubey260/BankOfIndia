@@ -43,6 +43,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
         Date cal = (Date) Calendar.getInstance().getTime();
+
         dt = cal.toLocaleString();
         tvDAT.setText(dt.toString());
 
