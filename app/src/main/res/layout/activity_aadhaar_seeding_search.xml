@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#003F8E"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolseed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#A0A0A0"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+            <ImageView
+                android:id="@+id/btnset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tvappn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Aadhaar Number Seeding"
+                android:textSize="20dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <LinearLayout
+            android:id="@+id/ln"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolseed"
+            android:background="#55000000"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/tv_accountno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="Account Number"
+                    android:textSize="11sp"
+                    android:textColor="#FFFFFF" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/linear_background"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_accountno_new"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext1"
+                        android:hint="Enter Account No"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/tv_customerid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="11sp"
+                    android:text="Customer Id"
+                    android:textColor="#FFFFFF" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/linear_background"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_customerid_new"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext1"
+                        android:hint="Enter Customer Id"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Search"
+                    android:background="@drawable/button_selector"
+                    android:textColor="@color/White"/>
+
+                <TextView
+                    android:id="@+id/tv_error"
+                    android:layout_marginLeft="90dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter alteast one "
+                    android:textColor="@color/Red"
+                    android:visibility="gone"
+                    />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_layout_panal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/MidnightBlue"
+                android:orientation="vertical"
+                android:visibility="gone"
+
+
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="11sp"
+                        android:text="Name"
+                        android:textColor="#FFFFFF" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_name_new"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext1"
+                            android:singleLine="true"
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/tv_mobileno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="11sp"
+                        android:text="Mobile No"
+                        android:textColor="#FFFFFF" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_mobileno_new"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext1"
+                            android:singleLine="true"
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff"
+                            android:textSize="11sp"
+
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/tv_adhrno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="11sp"
+                        android:text="Aadhaar No"
+                        android:textColor="#FFFFFF" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_show_adhr_no"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext1"
+                            android:singleLine="true"
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff"
+                            android:textSize="11sp"
+
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearlayoutSeeding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="Aadhaar Sedding"
+                    android:textColor="@color/Orange"
+                    android:textSize="13sp"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_adhrName_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="11sp"
+                        android:text="Name as in Aadhaar"
+                        android:textColor="#FFFFFF" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/linear_background"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/edt_show_adhr_name_new"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext1"
+                            android:hint="Name in Aadhaar"
+                            android:singleLine="true"
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff"
+                            android:textSize="11sp"
+
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/tv_adhrno_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="11sp"
+                        android:text="Aadhaar No"
+                        android:textColor="#FFFFFF" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/linear_background"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/tv_show_adhr_no_new"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext1"
+                            android:hint=" Enter Aadhar No"
+                            android:singleLine="true"
+                            android:textColor="#ffffff"
+                            android:textColorHint="#ffffff"
+                            android:textSize="11sp"
+                            android:maxLength="12"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+
+                    >
+                    <ImageView
+                        android:id="@+id/img_Aadhar"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/camera"
+                        />
+
+                </RelativeLayout>
+      <LinearLayout
+          android:padding="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:weightSum="2"
+          >
+          <Button
+              android:id="@+id/btn_save_new"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:hint="Save"
+              android:layout_weight="1"
+              android:background="@drawable/button_selector"
+              android:textColor="@color/White"
+              />
+
+          <Button
+              android:id="@+id/btn_reset"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:hint="Reset"
+              android:layout_weight="1"
+              android:background="@drawable/button_selector"
+              android:textColor="@color/White"
+              />
+      </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="#FF8A00" />
+    </RelativeLayout>
+
+</RelativeLayout>
