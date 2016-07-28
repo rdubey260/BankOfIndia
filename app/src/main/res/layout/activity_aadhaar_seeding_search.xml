@@ -372,32 +372,32 @@
                         />
 
                 </RelativeLayout>
-      <LinearLayout
-          android:padding="5dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:weightSum="2"
-          >
-          <Button
-              android:id="@+id/btn_save_new"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="Save"
-              android:layout_weight="1"
-              android:background="@drawable/button_selector"
-              android:textColor="@color/White"
-              />
+                <LinearLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    >
+                    <Button
+                        android:id="@+id/btn_save_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Save"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector"
+                        android:textColor="@color/White"
+                        />
 
-          <Button
-              android:id="@+id/btn_reset"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="Reset"
-              android:layout_weight="1"
-              android:background="@drawable/button_selector"
-              android:textColor="@color/White"
-              />
-      </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_reset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Reset"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector"
+                        android:textColor="@color/White"
+                        />
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

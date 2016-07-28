@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#003F8E"
-    tools:context="com.example.administrator.bankofindia.HomePageActivity">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"

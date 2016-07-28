@@ -76,7 +76,11 @@
                         android:textColor="#ffffff"
                         android:paddingLeft="2dp"
                         android:clickable="true"
+
+                        android:inputType="textPersonName"
+
                         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+
                         android:hint="Enter Your User Name"
                         android:lines="1" />
 
