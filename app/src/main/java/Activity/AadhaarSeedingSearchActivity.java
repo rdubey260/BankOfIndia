@@ -1,21 +1,21 @@
 package activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -58,8 +60,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     ImageView imgAadhar;
     private static final int CAMERA_REQUEST = 1888;
     String temp;
-    Uri imageUri;
-    String imageurl;
+    Bitmap bitmap;
+    String imgString;
 
 
 
@@ -180,18 +182,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         imgAadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-               /* File file= Environment.getExternalStorageDirectory();
-                file = new File(file,"image");
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));*/
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE, "New Picture");
-                values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-                imageUri = getContentResolver().insert(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                startActivityForResult(intent, CAMERA_REQUEST);
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
 
@@ -335,6 +329,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... args) {
 
+
+
             //   String NewUrl = args[0];
             Map<String, String> params = new LinkedHashMap<>();
             params.put("Method", "UpdateMemberForAll");
@@ -347,7 +343,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             params.put("branchcd", "8841");
             params.put("ZoneCode", "1");
             params.put("ind", "2");
-            params.put("Img",imageurl);
+            params.put("Img",imgString);
 
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, String> param : params.entrySet()) {
@@ -480,7 +476,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     }
 
-    /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+   /* protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
@@ -502,39 +498,63 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llShowDetails.setVisibility(View.GONE);
 
     }
-   /* public byte[] getBytesFromBitmap(Bitmap photo) {
+    public byte[] getBytesFromBitmap(Bitmap photo) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
-*/
+    public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight)
+    { // BEST QUALITY MATCH
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
+        //First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
 
-            case CAMERA_REQUEST:
-                if (requestCode == CAMERA_REQUEST)
-                    if (resultCode == Activity.RESULT_OK) {
-                        try {
-                         Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
-                                    getContentResolver(), imageUri);
-                            imgAadhar.setImageBitmap(thumbnail);
-                             imageurl = getRealPathFromURI(imageUri);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+        // Calculate inSampleSize, Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        int inSampleSize = 1;
 
-                    }
+        if (height > reqHeight)
+        {
+            inSampleSize = Math.round((float)height / (float)reqHeight);
         }
-    }
+        int expectedWidth = width / inSampleSize;
 
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
+        if (expectedWidth > reqWidth)
+        {
+            //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
+            inSampleSize = Math.round((float)width / (float)reqWidth);
+        }
+
+        options.inSampleSize = inSampleSize;
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeFile(path, options);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST)
+        {
+            //Get our saved file into a bitmap object:
+            File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+            bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500,500);
+//	       ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray();
+//		ba1 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+//		Log.e("base64", "-----" + ba1);
+
+            // get the base 64 string
+           imgString = Base64.encodeToString(getBytesFromBitmap(bitmap),Base64.NO_WRAP);
+            imgAadhar.setImageBitmap(bitmap);
+        }
+
+
     }
 
 }
