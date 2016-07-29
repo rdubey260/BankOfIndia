@@ -1,17 +1,21 @@
 package activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +29,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -55,6 +58,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     ImageView imgAadhar;
     private static final int CAMERA_REQUEST = 1888;
     String temp;
+    Uri imageUri;
+    String imageurl;
 
 
 
@@ -175,8 +180,18 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         imgAadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                //Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+               /* File file= Environment.getExternalStorageDirectory();
+                file = new File(file,"image");
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));*/
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.TITLE, "New Picture");
+                values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+                imageUri = getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, CAMERA_REQUEST);
             }
         });
 
@@ -312,10 +327,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(AadhaarSeedingSearchActivity.this);
+          /*  pDialog = new ProgressDialog(AadhaarSeedingSearchActivity.this);
             pDialog.setMessage("Updating...");
             pDialog.show();
-        }
+ */       }
 
         @Override
         protected String doInBackground(String... args) {
@@ -332,7 +347,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             params.put("branchcd", "8841");
             params.put("ZoneCode", "1");
             params.put("ind", "2");
-            params.put("Img",temp);
+            params.put("Img",imageurl);
 
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, String> param : params.entrySet()) {
@@ -465,16 +480,21 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream baos=new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.JPEG,100, baos);
             byte [] b=baos.toByteArray();
+<<<<<<< HEAD
             temp=Base64.encodeToString(b, Base64.NO_WRAP);
+=======
+            temp=Base64.encodeToString(getBytesFromBitmap(photo), Base64.NO_WRAP);
+>>>>>>> 2ddf06f7a860337746f83784cb48606d192a5ed8
             imgAadhar.setImageBitmap(photo);
         }
-    }
+    }*/
 
     public void resetData(){
 
@@ -486,4 +506,37 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llShowDetails.setVisibility(View.GONE);
 
     }
+   /* public byte[] getBytesFromBitmap(Bitmap photo) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+    }
+*/
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+
+            case CAMERA_REQUEST:
+                if (requestCode == CAMERA_REQUEST)
+                    if (resultCode == Activity.RESULT_OK) {
+                        try {
+                         Bitmap thumbnail = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                            imgAadhar.setImageBitmap(thumbnail);
+                             imageurl = getRealPathFromURI(imageUri);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+        }
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
 }
