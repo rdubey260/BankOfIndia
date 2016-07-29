@@ -192,7 +192,7 @@ public class LoginFormActivity extends AppCompatActivity {
 
             if (json != null) {
                 pDialog.dismiss();
-                //Toast.makeText(LoginFormActivity.this, json.toString(), Toast.LENGTH_LONG).show();
+
 
 
                 try {
@@ -222,11 +222,11 @@ public class LoginFormActivity extends AppCompatActivity {
 
 
                         }
-                        if (UserName.equalsIgnoreCase(username)) {
+
                             Intent in = new Intent(LoginFormActivity.this, HomePageActivity.class);
                             in.putExtra("mytext",UserFullName);
                             startActivity(in);
-                        }
+
                     //}
 
 
