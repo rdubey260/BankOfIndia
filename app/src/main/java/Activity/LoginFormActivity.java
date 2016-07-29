@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -109,48 +110,21 @@ public class LoginFormActivity extends AppCompatActivity {
     }
 
     class GetUserData extends AsyncTask<String, Void, String> {
-        //   JSONParser jsonParser = new JSONParser();
+
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(LoginFormActivity.this);
             pDialog.setMessage("Please Wait...");
             pDialog.show();
 
-           /* pbar = new ProgressBar(LoginFormActivity.this);
-            pbar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pbar.setIndeterminate(true);*/
+
         }
 
         @Override
         protected String doInBackground(String... args) {
 
             String NewUrl = args[0];
-           /* try {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("Method", "GetRecord");
-                params.put("AccountNo", args[0]);
-                params.put("CustomerId", args[1]);
-                params.put("CustomerName", args[2]);
-                // params.put("CustomerName", "amit%20yadav");
-                params.put("MobileNo", args[3]);
-                params.put("SourceType", "2");
-                params.put("UserCode", "8");
-                params.put("Campcd", "1");
-                params.put("branchcd", "8841");
-                params.put("ZoneCode", "1");
-                params.put("RecordNo", null);
-                params.put("ind", "1");
-                JSONObject json = jsonParser.makeHttpRequest(Constant.LOGIN_URL, "GET", params);
-                return json;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
 
-          /*  try {
-                InetAddress i = InetAddress.getByName(NewUrl);
-            } catch (UnknownHostException e1) {
-                e1.printStackTrace();
-            }*/
 
             HttpURLConnection ht = null;
             try {
@@ -193,51 +167,31 @@ public class LoginFormActivity extends AppCompatActivity {
             if (json != null) {
                 pDialog.dismiss();
 
-
-
                 try {
-                    // userinfoList = new ArrayList<>();
                     JSONArray jsonArry = new JSONArray(json);
-                   /* if (jsonArry.length() == 1) {
+                    for (int i = 0; i < jsonArry.length(); i++) {
 
-                                Toast.makeText(LoginFormActivity.this, "enter valid username or password", Toast.LENGTH_LONG).show();
-
-                    }else {*/
-                        for (int i = 0; i < jsonArry.length(); i++) {
-
-                            JSONObject jsonObject = jsonArry.getJSONObject(i);
-                            String UserCode = jsonObject.getString("UserCode");
-                            UserFullName = jsonObject.getString("UserFullName");
-                            String BcCode = jsonObject.getString("BcCode");
-                            String LevelCode = jsonObject.getString("LevelCode");
-                            UserName = jsonObject.getString("UserName");
-                            String ZoneCode = jsonObject.getString("ZoneCode");
-                            String ZoneDesc = jsonObject.getString("ZoneDesc");
-                            String CityCode = jsonObject.getString("CityCode");
-                            String CityName = jsonObject.getString("CityName");
-                            String BranchCode = jsonObject.getString("BranchCode");
-                            String BranchName = jsonObject.getString("BranchName");
-                            String CampCode = jsonObject.getString("CampCode");
-                            String CampDesc = jsonObject.getString("CampDesc");
+                        JSONObject jsonObject = jsonArry.getJSONObject(i);
+                        String UserCode = jsonObject.getString("UserCode");
+                        UserFullName = jsonObject.getString("UserFullName");
+                        String BcCode = jsonObject.getString("BcCode");
+                        String LevelCode = jsonObject.getString("LevelCode");
+                        UserName = jsonObject.getString("UserName");
+                        String ZoneCode = jsonObject.getString("ZoneCode");
+                        String ZoneDesc = jsonObject.getString("ZoneDesc");
+                        String CityCode = jsonObject.getString("CityCode");
+                        String CityName = jsonObject.getString("CityName");
+                        String BranchCode = jsonObject.getString("BranchCode");
+                        String BranchName = jsonObject.getString("BranchName");
+                        String CampCode = jsonObject.getString("CampCode");
+                        String CampDesc = jsonObject.getString("CampDesc");
 
 
-                        }
+                    }
 
-                            Intent in = new Intent(LoginFormActivity.this, HomePageActivity.class);
-                            in.putExtra("mytext",UserFullName);
-                            startActivity(in);
-
-                    //}
-
-
-/*
-                    if (userinfoList != null) {
-                        Intent in = new Intent(Aadhaarseedingactivity.this, Showseedingactivity.class);
-                        in.putExtra("list", userinfoList);
-                        startActivity(in);
-
-                }
-*/
+                    Intent in = new Intent(LoginFormActivity.this, HomePageActivity.class);
+                    in.putExtra("mytext", UserFullName);
+                    startActivity(in);
 
 
                 } catch (JSONException e) {

@@ -469,9 +469,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream baos=new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.PNG,100, baos);
+            photo.compress(Bitmap.CompressFormat.JPEG,100, baos);
             byte [] b=baos.toByteArray();
-            temp=Base64.encodeToString(b, Base64.DEFAULT);
+            temp=Base64.encodeToString(b, Base64.NO_WRAP);
             imgAadhar.setImageBitmap(photo);
         }
     }
