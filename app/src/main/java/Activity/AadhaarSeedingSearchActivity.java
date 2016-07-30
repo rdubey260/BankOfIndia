@@ -64,7 +64,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     String imgString;
     TextView tvName,tvTime;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,18 +171,32 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String upDateAdarNo = etNewAadhaarNo.getText().toString();
-                String upDateAdrName = etNameInAadhaar.getText().toString();
-
-                ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected() == true) {
-                    UpdateUserData getUserData = new UpdateUserData();
-                    getUserData.execute(upDateAdarNo, upDateAdrName, AccountNo, RecordNo);
+                if (etNameInAadhaar.getText().toString().length() == 0) {
+                    // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
+                    etNameInAadhaar.setError("Please Enter Name as in Aadhaar");
 
                 } else {
-                    Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+                    if (etNewAadhaarNo.getText().toString().length() == 0) {
 
+                        // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
+                        etNewAadhaarNo.setError("Please Enter currect Aadhaar number");
+
+                    } else {
+
+                        String upDateAdarNo = etNewAadhaarNo.getText().toString();
+                        String upDateAdrName = etNameInAadhaar.getText().toString();
+
+                        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                        if (networkInfo != null && networkInfo.isConnected() == true) {
+                            UpdateUserData getUserData = new UpdateUserData();
+                            getUserData.execute(upDateAdarNo, upDateAdrName, AccountNo, RecordNo);
+
+                        } else {
+                            Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
                 }
             }
         });
@@ -214,7 +227,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
             String NewUrl = args[0];
-
 
             HttpURLConnection ht = null;
             try {
@@ -301,6 +313,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     }
 
     class UpdateUserData extends AsyncTask<String, Void, String> {
+
 
         @Override
         protected void onPreExecute() {
@@ -392,7 +405,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             return response;
 
-
         }
 
         protected void onPostExecute(String json) {
@@ -452,7 +464,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         if (expectedWidth > reqWidth) {
             //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
             inSampleSize = Math.round((float) width / (float) reqWidth);
-
         }
 
         options.inSampleSize = inSampleSize;
@@ -471,11 +482,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 //	       ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] imageBytes = baos.toByteArray();
-//		ba1 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-//		Log.e("base64", "-----" + ba1);
-
-            // get the base 64 string
             imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
             imgAadhar.setImageBitmap(bitmap);
         }

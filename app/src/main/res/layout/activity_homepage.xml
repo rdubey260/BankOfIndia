@@ -41,88 +41,91 @@
 
     </android.support.v7.widget.Toolbar>
 
+        <LinearLayout
+            android:background="@color/Orange"
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="18">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="17">
+
+                <!-- <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/tvUName"
+                     android:text="Welcome"
+                     android:ems="5"
+                     android:textSize="12sp"
+                     android:textColor="#FFFFFF"
+                     />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvuname"
+                    android:text="USER NAME"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <!-- <TextView
+
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/tvDandT"
+                     android:text="Date &amp; Time "
+                     android:ems="5"
+                     android:textSize="12sp"
+                     android:textColor="#FFFFFF"
+
+                     />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvDAT"
+                    android:text="dd/T"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+
+
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     <LinearLayout
         android:layout_below="@+id/tool1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
-    <LinearLayout
-        android:background="@color/Orange"
-        android:id="@+id/lin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:weightSum="18">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="17">
-
-       <!-- <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvUName"
-            android:text="Welcome"
-            android:ems="5"
-            android:textSize="12sp"
-            android:textColor="#FFFFFF"
-            />-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvuname"
-            android:text="USER NAME"
-            android:textSize="12sp"
-            android:textColor="#FFFFFF"
-            />
-        </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:gravity="center"
         >
 
-       <!-- <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvDandT"
-            android:text="Date &amp; Time "
-            android:ems="5"
-            android:textSize="12sp"
-            android:textColor="#FFFFFF"
-
-            />-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvDAT"
-            android:text="dd/T"
-            android:textSize="12sp"
-            android:textColor="#FFFFFF"
-
-
-            />
-        </LinearLayout>
-
-
-    </LinearLayout>
 
 
     <RelativeLayout
         android:layout_below="@+id/lin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      android:layout_marginTop="130dp"
+        android:layout_gravity="center"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-           android:gravity="center_horizontal"
+            android:gravity="center_horizontal"
             >
 
             <LinearLayout
@@ -132,18 +135,18 @@
 
                 >
                 <Button
-                    android:id="@+id/bt_first"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:hint="FRIST"
+                    android:id="@+id/bt_second"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:hint="Aadhaar Seeding (through user List)"
                     />
 
                 <Button
-
-                    android:id="@+id/bt_second"
+                    android:id="@+id/bt_first"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:hint="SECOND"
+                    android:visibility="gone"
                     />
 
 
@@ -156,9 +159,9 @@
                 >
                 <Button
                     android:id="@+id/bt_third"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:hint="THIRD"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:hint="Aadhaar seeding (Indivisual user)"
                     />
 
                 <Button
@@ -166,6 +169,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:hint="FORTH"
+                    android:visibility="gone"
                     />
 
 

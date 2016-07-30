@@ -124,26 +124,42 @@ public class ShowSeedingAdapter extends BaseAdapter {
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        selectcheckbox.setChecked(false);
 
-                        String upDateAdarNo = edtAdhrNo.getText().toString();
-                        String upDateAdrName = edtAdhrNoAsInAdr.getText().toString();
-                        String accountNo = userinfoList.get(position).getAccountNo();
-                        String recordNo = userinfoList.get(position).getRecordNo();
+                        if (edtAdhrNo.getText().toString().length() == 0) {
+                            // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
+                            edtAdhrNo.setError(" Please Enter currect Aadhaar number");
 
-                        //  JsonParams jsnp= new JsonParams(upDateAdarNo,upDateAdrName,"8841","1",accountNo,recordNo,"1","8");
-                        //   String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?"+String.valueOf(jsnp);
-                        // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
-                        //  String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?ind=1&AadhaarNo="+upDateAdarNo+"&branchcd=8841&ZoneCode=1&AccountNo="+accountNo+"&NewNameAsAadhaar="+upDateAdrName+"&SourceType=1&UserCode=8&RecordNo="+recordNo;
-                        ConnectivityManager ConnectionManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                        if (networkInfo != null && networkInfo.isConnected() == true) {
-                            UpdateUserData getUserData = new UpdateUserData();
-                            getUserData.execute(upDateAdarNo, upDateAdrName, accountNo, recordNo);
-
+                            return;
                         } else {
-                            Toast.makeText(context, "Network Not Available", Toast.LENGTH_LONG).show();
+                            if (edtAdhrNoAsInAdr.getText().toString().length() == 0) {
 
+                                // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
+                                edtAdhrNoAsInAdr.setError("Please Enter Name as in Aadhaar");
+
+                            } else {
+                                selectcheckbox.setChecked(false);
+
+
+                                String upDateAdarNo = edtAdhrNo.getText().toString();
+                                String upDateAdrName = edtAdhrNoAsInAdr.getText().toString();
+                                String accountNo = userinfoList.get(position).getAccountNo();
+                                String recordNo = userinfoList.get(position).getRecordNo();
+
+                                //  JsonParams jsnp= new JsonParams(upDateAdarNo,upDateAdrName,"8841","1",accountNo,recordNo,"1","8");
+                                //   String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?"+String.valueOf(jsnp);
+                                // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
+                                //  String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?ind=1&AadhaarNo="+upDateAdarNo+"&branchcd=8841&ZoneCode=1&AccountNo="+accountNo+"&NewNameAsAadhaar="+upDateAdrName+"&SourceType=1&UserCode=8&RecordNo="+recordNo;
+                                ConnectivityManager ConnectionManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                                NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                                if (networkInfo != null && networkInfo.isConnected() == true) {
+                                    UpdateUserData getUserData = new UpdateUserData();
+                                    getUserData.execute(upDateAdarNo, upDateAdrName, accountNo, recordNo);
+
+                                } else {
+                                    Toast.makeText(context, "Network Not Available", Toast.LENGTH_LONG).show();
+
+                                }
+                            }
                         }
                     }
                 });
