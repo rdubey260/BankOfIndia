@@ -36,13 +36,79 @@
 
     </android.support.v7.widget.Toolbar>
         <LinearLayout
-            android:id="@+id/ln"
+            android:layout_below="@+id/toolseed"
+            android:background="@color/Orange"
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            >
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="17">
+
+                <!-- <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/tvUName"
+                     android:text="Welcome"
+                     android:ems="5"
+                     android:textSize="12sp"
+                     android:textColor="#FFFFFF"
+                     />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvuname2"
+                    android:text="USER NAME"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <!-- <TextView
+
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/tvDandT"
+                     android:text="Date &amp; Time "
+                     android:ems="5"
+                     android:textSize="12sp"
+                     android:textColor="#FFFFFF"
+
+                     />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvDATe1"
+                    android:text="dd/T"
+                    android:textSize="12sp"
+                    android:textColor="#FFFFFF"
+
+
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
             android:background="#55000000"
+            android:layout_below="@+id/lin"
+            android:id="@+id/ln"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -198,12 +264,12 @@
                 />
 
     </LinearLayout>
-        <View
+        <!--<View
             android:layout_width="match_parent"
             android:background="#FF8A00"
             android:layout_height="20dp"
             android:layout_alignBottom="@+id/ln"
-            />
+            />-->
     </RelativeLayout>
 
 </RelativeLayout>

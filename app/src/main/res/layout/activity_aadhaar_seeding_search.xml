@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
 
         android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#003F8E"
         android:orientation="vertical">
 
@@ -48,10 +48,75 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:background="@color/Orange"
+                android:id="@+id/lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="17">
+
+                    <!-- <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:id="@+id/tvUName"
+                         android:text="Welcome"
+                         android:ems="5"
+                         android:textSize="12sp"
+                         android:textColor="#FFFFFF"
+                         />-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvuname1"
+                        android:text="USER NAME"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <!-- <TextView
+
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:id="@+id/tvDandT"
+                         android:text="Date &amp; Time "
+                         android:ems="5"
+                         android:textSize="12sp"
+                         android:textColor="#FFFFFF"
+
+                         />-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvDATe"
+                        android:text="dd/T"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+
+
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="3dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tv_accountno"
@@ -88,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="3dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tv_customerid"
@@ -120,7 +185,7 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
@@ -404,11 +469,11 @@
             </LinearLayout>
         </LinearLayout>
 
-        <View
+     <!--   <View
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"
-            android:background="#FF8A00" />
+            android:background="#FF8A00" />-->
     </RelativeLayout>
 
 </RelativeLayout>

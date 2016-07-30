@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -45,6 +46,7 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
     String AccNo;
     ArrayList<UserDataInfoBean> userinfoList = new ArrayList<>();
     ProgressDialog pDialog;
+    TextView tvName,tvTime;
 
 
     @Override
@@ -62,6 +64,16 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
         etcustomerid = (EditText) findViewById(R.id.et_customerid);
         etname = (EditText) findViewById(R.id.et_name);
         etmobileno = (EditText) findViewById(R.id.et_mobileno);
+        tvName= (TextView) findViewById(R.id.tvuname2);
+        tvTime= (TextView) findViewById(R.id.tvDATe1);
+
+        Intent in = getIntent();
+        String uuserName= in.getStringExtra("name");
+        String dte= in.getStringExtra("Date");
+
+        tvName.setText(uuserName);
+        tvTime.setText(dte);
+
 
         btnnsearch.setOnClickListener(new View.OnClickListener() {
             @Override

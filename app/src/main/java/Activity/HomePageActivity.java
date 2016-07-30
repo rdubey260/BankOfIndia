@@ -19,6 +19,7 @@ public class HomePageActivity extends AppCompatActivity {
     TextView tvuname,tvDAT;
     Toolbar toolbar;
     String dt;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,10 @@ public class HomePageActivity extends AppCompatActivity {
         dt = cal.toLocaleString();
         tvDAT.setText(dt.toString());
 
-        tvuname.setText(getIntent().getStringExtra("mytext"));
+        Intent in = getIntent();
+        userName= in.getStringExtra("mytext");
+
+        tvuname.setText(userName);
 
         btfirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +65,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePageActivity.this, Aadhaarseedingactivity.class);
+                i.putExtra("name",userName);
+                i.putExtra("Date",dt);
                 startActivity(i);
             }
         });
@@ -70,6 +76,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePageActivity.this, AadhaarSeedingSearchActivity.class);
+                i.putExtra("name",userName);
+                i.putExtra("Date",dt);
                 startActivity(i);
             }
         });

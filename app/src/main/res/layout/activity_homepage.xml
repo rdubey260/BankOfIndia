@@ -48,7 +48,7 @@
         android:orientation="vertical"
         >
     <LinearLayout
-
+        android:background="@color/Orange"
         android:id="@+id/lin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -175,12 +175,12 @@
     </LinearLayout>
     </LinearLayout>
 
-        <View
+      <!--  <View
             android:layout_width="match_parent"
             android:background="#FF8A00"
             android:layout_height="20dp"
             android:layout_alignBottom="@+id/ll"
-            />
+            />-->
     </RelativeLayout>
 
 </RelativeLayout>
