@@ -56,13 +56,12 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     ProgressDialog pDialog;
     LinearLayout llShowDetails, llSeeding;
     Reader in;
-    String RecordNo,AccountNo;
+    String RecordNo, AccountNo;
     ImageView imgAadhar;
     private static final int CAMERA_REQUEST = 1888;
     String temp;
     Bitmap bitmap;
     String imgString;
-
 
 
     @Override
@@ -163,18 +162,33 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String upDateAdarNo = etNewAadhaarNo.getText().toString();
-                String upDateAdrName = etNameInAadhaar.getText().toString();
+                if (etNameInAadhaar.getText().toString().length() == 0) {
+                    // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
+                    etNameInAadhaar.setError("Please Enter Name as in Aadhaar");
 
-                ConnectivityManager ConnectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected() == true) {
-                    UpdateUserData getUserData = new UpdateUserData();
-                    getUserData.execute( upDateAdarNo,upDateAdrName,AccountNo,RecordNo);
-
+                    return;
                 } else {
-                    Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+                    if (etNewAadhaarNo.getText().toString().length() == 0) {
 
+                        // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
+                        etNewAadhaarNo.setError("Please Enter currect Aadhaar number");
+
+                    } else {
+
+                        String upDateAdarNo = etNewAadhaarNo.getText().toString();
+                        String upDateAdrName = etNameInAadhaar.getText().toString();
+
+                        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                        if (networkInfo != null && networkInfo.isConnected() == true) {
+                            UpdateUserData getUserData = new UpdateUserData();
+                            getUserData.execute(upDateAdarNo, upDateAdrName, AccountNo, RecordNo);
+
+                        } else {
+                            Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
                 }
             }
         });
@@ -183,7 +197,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+                File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
@@ -192,7 +206,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     }
 
 
-        class GetUserData extends AsyncTask<String, Void, String> {
+    class GetUserData extends AsyncTask<String, Void, String> {
         //   JSONParser jsonParser = new JSONParser();
         @Override
         protected void onPreExecute() {
@@ -205,32 +219,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
             String NewUrl = args[0];
-           /* try {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("Method", "GetRecord");
-                params.put("AccountNo", args[0]);
-                params.put("CustomerId", args[1]);
-                params.put("CustomerName", args[2]);
-                // params.put("CustomerName", "amit%20yadav");
-                params.put("MobileNo", args[3]);
-                params.put("SourceType", "2");
-                params.put("UserCode", "8");
-                params.put("Campcd", "1");
-                params.put("branchcd", "8841");
-                params.put("ZoneCode", "1");
-                params.put("RecordNo", null);
-                params.put("ind", "1");
-                JSONObject json = jsonParser.makeHttpRequest(Constant.LOGIN_URL, "GET", params);
-                return json;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
-
-          /*  try {
-                InetAddress i = InetAddress.getByName(NewUrl);
-            } catch (UnknownHostException e1) {
-                e1.printStackTrace();
-            }*/
 
             HttpURLConnection ht = null;
             try {
@@ -317,7 +305,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     }
 
     class UpdateUserData extends AsyncTask<String, Void, String> {
-      //  JSONParser jsonParser = new JSONParser();
+        //  JSONParser jsonParser = new JSONParser();
 
         @Override
         protected void onPreExecute() {
@@ -330,20 +318,19 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
 
-
             //   String NewUrl = args[0];
             Map<String, String> params = new LinkedHashMap<>();
             params.put("Method", "UpdateMemberForAll");
             params.put("AadhaarNo", args[0]);
             params.put("NewNameAsAadhaar", args[1]);
-            params.put("AccountNo",args[2]);
-            params.put("RecordNo",args[3]);
+            params.put("AccountNo", args[2]);
+            params.put("RecordNo", args[3]);
             params.put("SourceType", "1");
             params.put("UserCode", "8");
             params.put("branchcd", "8841");
             params.put("ZoneCode", "1");
             params.put("ind", "2");
-            params.put("Img",imgString);
+            params.put("Img", imgString);
 
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, String> param : params.entrySet()) {
@@ -410,53 +397,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             return response;
 
-               /* JSONObject json = jsonParser.makeHttpRequest(Constant.LOGIN_URL, "PUT", params);
-               return json;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
-
-          /*  try {
-                InetAddress i = InetAddress.getByName(NewUrl);
-            } catch (UnknownHostException e1) {
-                e1.printStackTrace();
-            }*/
-
-         /*   HttpURLConnection ht = null;
-            try {
-                URL ur = new URL(NewUrl);
-                ht = (HttpURLConnection) ur.openConnection();
-                ht.setRequestMethod("PUT");
-                ht.connect();
-                int status = ht.getResponseCode();
-                switch (status) {
-                    case 200:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(ht.getInputStream()));
-                        StringBuilder sr = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sr.append(line + "\n");
-                        }
-                        br.close();
-                        return sr.toString();
-                }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (ht != null) {
-                    try {
-                        ht.disconnect();
-                    } catch (Exception ex) {
-                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-
-         */
-
-
         }
 
         protected void onPostExecute(String json) {
@@ -476,19 +416,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     }
 
-   /* protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
 
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            ByteArrayOutputStream baos=new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.JPEG,100, baos);
-            byte [] b=baos.toByteArray();
-            temp=Base64.encodeToString(getBytesFromBitmap(photo), Base64.NO_WRAP);
-            imgAadhar.setImageBitmap(photo);
-        }
-    }*/
-
-    public void resetData(){
+    public void resetData() {
 
         etAccountNo.setText("");
         etCoustomerId.setText("");
@@ -498,13 +427,14 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llShowDetails.setVisibility(View.GONE);
 
     }
+
     public byte[] getBytesFromBitmap(Bitmap photo) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
-    public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight)
-    { // BEST QUALITY MATCH
+
+    public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight) { // BEST QUALITY MATCH
 
         //First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -517,16 +447,14 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         options.inPreferredConfig = Bitmap.Config.RGB_565;
         int inSampleSize = 1;
 
-        if (height > reqHeight)
-        {
-            inSampleSize = Math.round((float)height / (float)reqHeight);
+        if (height > reqHeight) {
+            inSampleSize = Math.round((float) height / (float) reqHeight);
         }
         int expectedWidth = width / inSampleSize;
 
-        if (expectedWidth > reqWidth)
-        {
+        if (expectedWidth > reqWidth) {
             //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
-            inSampleSize = Math.round((float)width / (float)reqWidth);
+            inSampleSize = Math.round((float) width / (float) reqWidth);
         }
 
         options.inSampleSize = inSampleSize;
@@ -536,21 +464,17 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         return BitmapFactory.decodeFile(path, options);
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST)
-        {
+        if (requestCode == CAMERA_REQUEST) {
             //Get our saved file into a bitmap object:
-            File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
-            bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500,500);
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+            bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500, 500);
 //	       ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] imageBytes = baos.toByteArray();
-//		ba1 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-//		Log.e("base64", "-----" + ba1);
-
-            // get the base 64 string
-           imgString = Base64.encodeToString(getBytesFromBitmap(bitmap),Base64.NO_WRAP);
+            //byte[] imageBytes = baos.toByteArray();
+            imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
             imgAadhar.setImageBitmap(bitmap);
         }
 

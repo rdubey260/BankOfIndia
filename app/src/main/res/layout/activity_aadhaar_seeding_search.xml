@@ -349,6 +349,7 @@
                             android:background="@drawable/edittext1"
                             android:hint=" Enter Aadhar No"
                             android:singleLine="true"
+                            android:inputType="number"
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff"
                             android:textSize="11sp"
