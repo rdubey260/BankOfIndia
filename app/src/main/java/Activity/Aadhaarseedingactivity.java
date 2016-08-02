@@ -58,8 +58,9 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_seeding);
 
-        toolseed = (Toolbar) findViewById(R.id.toolseed);
+        toolseed = (Toolbar) findViewById(R.id.tool2);
         btnnsearch = (Button) findViewById(R.id.btn_search);
+
         etaccountno = (EditText) findViewById(R.id.et_accountno);
         etcustomerid = (EditText) findViewById(R.id.et_customerid);
         etname = (EditText) findViewById(R.id.et_name);
@@ -99,6 +100,7 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     class GetUserData extends AsyncTask<String, Void, String> {
         //   JSONParser jsonParser = new JSONParser();
@@ -171,7 +173,6 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                     }
                 }
             }
-
             return null;
         }
 

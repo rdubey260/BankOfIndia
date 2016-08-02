@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#003F8E"
+    android:background="#55000000"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -18,37 +18,41 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/tv_dialog_adhr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="8"
+                android:textSize="16sp"
                 android:text="Aadhaar No"
-                android:textColor="#FFFFFF" />
+                android:layout_gravity="center"
+                android:textColor="#FFFFFF" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/linear_background"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White">
 
                 <EditText
+                    android:padding="5dp"
                     android:id="@+id/et_dialog_adhr"
-
-
-                    android:layout_width="140dp"
-
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext1"
+                    android:background="@drawable/login_scree_edt_background"
+                    android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
                     android:hint="Aadhaar No"
                     android:inputType="number"
-                    android:maxLength="12"
+                    android:lines="1"
                     android:singleLine="true"
-                    android:textColor="#ffffff"
-                    android:textColorHint="#ffffff"
-                    android:textSize="13sp"
-
+                    android:textColor="@color/Black"
+                    android:drawableRight="@drawable/aadhaar_no"
                     />
+                </RelativeLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -59,30 +63,42 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tv_no_per_adhr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="8"
+                android:textSize="16sp"
+                android:layout_gravity="center"
                 android:text="Name as in Aadhaar"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/linear_background"
+
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/et_no_per_adhr"
-                    android:layout_width="140dp"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext1"
-                    android:hint="Name as in Aadhaar"
-                    android:singleLine="true"
-                    android:textColor="#ffffff"
-                    android:textColorHint="#ffffff"
-                    android:textSize="13sp" />
+                    android:background="@color/White">
+
+                    <EditText
+                        android:padding="5dp"
+                        android:id="@+id/et_no_per_adhr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/login_scree_edt_background"
+                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                        android:hint="Name as in Aadhaar"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:drawableRight="@drawable/login_scree_05"
+                        />
+                </RelativeLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -99,21 +115,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Exit" />
+                android:hint="Exit"
+                android:textColorHint="@color/White"
+                android:background="@drawable/login_scree_17"/>
 
             <Button
                 android:id="@+id/bt_dialog_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Clear" />
+                android:hint="Clear"
+                android:textColorHint="@color/White"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/login_scree_17"/>
 
             <Button
                 android:id="@+id/bt_dialog_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Save" />
+                android:hint="Save"
+                android:textColorHint="@color/White"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/login_scree_17"/>
 
 
         </LinearLayout>
