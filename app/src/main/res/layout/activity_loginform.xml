@@ -1,165 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><!-- #0072c5 -->
+<?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:gravity="center">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll2"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="match_parent"
-        >
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2a3e61"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/btnset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/boi_logo_new" />
+
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/tvappn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/btnset"
+                    android:text="Aadhaar Seeding System"
+                    android:textColor="@color/White"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/oswal_logo" />
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/login_scree_orange_bar" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="#003F8E"
-            android:gravity="center"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/ll2">
-         <android.support.v7.widget.Toolbar
-                android:layout_gravity="center_vertical"
-                android:id="@+id/tool2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                android:background="#A0A0A0"
-             >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnset"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_launcher"
-                    />
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Login Form"
-                    android:id="@+id/tvappn"
-                    android:textSize="20dp"
-                    />
+            android:layout_below="@+id/tool2"
+            android:background="#55000000"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            </android.support.v7.widget.Toolbar>
 
             <LinearLayout
-                android:layout_below="@+id/tool2"
-                android:orientation="vertical"
-                android:background="#55000000"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:gravity="center"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/linear_background"
-                    android:layout_margin="20dp"
-                    >
+                    android:background="@color/White">
+
                     <EditText
-                        android:drawableLeft="@drawable/fullname_action"
+                        android:padding="5dp"
                         android:id="@+id/etUserName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edittext1"
-                        android:ems="10"
-                        android:singleLine="true"
-                        android:maxLength="50"
-                        android:textColorHint="#ffffff"
-                        android:textColor="#ffffff"
-                        android:paddingLeft="2dp"
-                        android:clickable="true"
-
-                        android:inputType="textPersonName"
-
+                        android:background="@drawable/login_scree_edt_background"
                         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                        android:drawableRight="@drawable/login_scree_login_icon"
+                        android:hint="Enter your user Name"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
 
-                        android:hint="Enter Your User Name"
-                        android:lines="1" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:background="#FF8A00"
                         />
 
-                        <EditText
-                            android:id="@+id/etpassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edittext1"
-                            android:ems="10"
-                            android:lines="1"
-                            android:singleLine="true"
-                            android:maxLength="14"
-                            android:paddingLeft="2dp"
-                            android:textColorHint="#ffffff"
-                            android:textColor="#ffffff"
-                            android:drawableLeft="@drawable/adhar_action"
-                            android:hint="Enter Your Password" />
+                </RelativeLayout>
 
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="20dp"
-                    android:gravity="center_horizontal"
-                    >
-                    <Button
-                        android:onClick="save"
-                        android:id="@+id/btnLogin"
-                        android:textSize="20dp"
-                        android:layout_width="130dp"
-                        android:padding="10dp"
-                        android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/White">
+
+                    <EditText
+
+                        android:id="@+id/etPassword"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/button_selector"
-                        android:text="Login"
-                        android:textColor="#FFFFFF" />
-                    <Button
-                        android:id="@+id/btnClear"
-                        android:onClick="clear"
-                        android:textSize="20dp"
-                        android:padding="10dp"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/button_selector"
-                        android:text="Clear"
-                        android:textColor="#FFFFFF" />
+                        android:background="@drawable/login_scree_edt_background"
+                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                        android:drawableRight="@drawable/pwd_scree_password_icon"
+                        android:hint="Enter your Password"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        />
 
+                </RelativeLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:gravity="center_horizontal"
-                    android:id="@+id/tableRow1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp"
-                    android:focusable="true" >
-                </LinearLayout>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/login_scree_17"
+                    android:text="Login"
+                    android:textColor="@color/White" />
+
+                <Button
+                    android:id="@+id/btnClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_scree_17"
+                    android:text="Clear"
+                    android:textColor="@color/White" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"></LinearLayout>
+
         </LinearLayout>
-        <View
-        android:layout_width="match_parent"
-        android:background="#FF8A00"
-        android:layout_height="20dp"
-        android:layout_alignBottom="@+id/ll2"
-        />
-    </RelativeLayout>
-</ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
 
 

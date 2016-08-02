@@ -3,7 +3,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#295CA0">
 
   <!--  <android.support.v7.widget.Toolbar
@@ -28,13 +27,21 @@
             android:textSize="20dp"/>
 
     </android.support.v7.widget.Toolbar>-->
+    <ImageView
+        android:id="@+id/iv_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_scree_orange_bar"
+        />
 
     <LinearLayout
+        android:layout_below="@+id/iv_welcome"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:background="#55000000"
         android:orientation="vertical"
         android:gravity="center">
+
 
         <TextView
             android:layout_height="wrap_content"
@@ -88,11 +95,6 @@
     </LinearLayout>
 
 
-    <View
-        android:layout_alignParentBottom="true"
-        android:layout_height="20dp"
-        android:layout_width="match_parent"
-        android:background="#FF8A00"/>
 
 
 

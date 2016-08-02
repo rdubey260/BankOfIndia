@@ -59,7 +59,7 @@ public class LoginFormActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
 
         etUserName = (EditText) findViewById(R.id.etUserName);
-        etpassword = (EditText) findViewById(R.id.etpassword);
+        etpassword = (EditText) findViewById(R.id.etPassword);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +108,7 @@ public class LoginFormActivity extends AppCompatActivity {
             }
         });
     }
+
 
     class GetUserData extends AsyncTask<String, Void, String> {
 

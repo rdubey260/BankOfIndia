@@ -58,8 +58,9 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_seeding);
 
-        toolseed = (Toolbar) findViewById(R.id.toolseed);
+        toolseed = (Toolbar) findViewById(R.id.tool2);
         btnnsearch = (Button) findViewById(R.id.btn_search);
+
         etaccountno = (EditText) findViewById(R.id.et_accountno);
         etcustomerid = (EditText) findViewById(R.id.et_customerid);
         etname = (EditText) findViewById(R.id.et_name);
@@ -84,6 +85,8 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                 String UserName = etname.getText().toString();
                 String UserMobileno = etmobileno.getText().toString();
 
+
+
                 String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=2&MobileNo=" + UserMobileno + "&CustomerName=" + UserName + "&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=" + AccNo + "&RecordNo=";
                 // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
 
@@ -99,6 +102,7 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     class GetUserData extends AsyncTask<String, Void, String> {
         //   JSONParser jsonParser = new JSONParser();
@@ -171,7 +175,6 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                     }
                 }
             }
-
             return null;
         }
 

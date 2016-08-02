@@ -38,7 +38,6 @@ public class HomePageActivity extends AppCompatActivity {
         btsecond = (Button) findViewById(R.id.bt_second);
         btthird = (Button) findViewById(R.id.bt_third);
         btfourth = (Button) findViewById(R.id.bt_forth);
-
         tvuname = (TextView) findViewById(R.id.tvuname);
         tvDAT = (TextView) findViewById(R.id.tvDAT);
 
@@ -92,4 +91,5 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
     }
+
 }
