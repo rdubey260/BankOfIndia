@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
 
@@ -23,8 +22,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/btnset"
@@ -33,22 +31,22 @@
                     android:src="@drawable/boi_logo_new" />
 
                 <TextView
-                    android:layout_marginTop="14dp"
-                    android:layout_marginLeft="15dp"
                     android:id="@+id/tvappn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="14dp"
                     android:layout_toRightOf="@+id/btnset"
                     android:text="Aadhaar Seeding System"
                     android:textColor="@color/White"
                     android:textSize="18dp" />
 
                 <ImageView
-                    android:paddingRight="5dp"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:paddingRight="5dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/oswal_logo" />
             </RelativeLayout>
@@ -68,13 +66,12 @@
             >
 
             <LinearLayout
-                android:background="@drawable/login_scree_orange_bar"
                 android:id="@+id/lin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/login_scree_orange_bar"
                 android:orientation="horizontal"
-                android:padding="5dp"
-                >
+                android:padding="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -91,19 +88,18 @@
                          android:textColor="#FFFFFF"
                          />-->
                     <TextView
+                        android:id="@+id/tvuname1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvuname1"
                         android:text="USER NAME"
-                        android:textSize="14sp"
                         android:textColor="#FFFFFF"
-                        />
+                        android:textSize="14sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    >
+                    android:layout_weight="1">
 
                     <!-- <TextView
 
@@ -117,57 +113,59 @@
 
                          />-->
                     <TextView
+                        android:id="@+id/tvDATe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvDATe"
                         android:text="dd/T"
-                        android:textSize="14sp"
                         android:textColor="#FFFFFF"
+                        android:textSize="14sp"
 
 
                         />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:paddingLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
 
                 >
-               <!-- <TextView
-                    android:id="@+id/tv_accountno"
+                <!-- <TextView
+                     android:id="@+id/tv_accountno"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:ems="8"
+                     android:layout_gravity="center"
+                     android:text="Account Number"
+                     android:textSize="15sp"
+                     android:textColor="@color/White" />-->
+
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:layout_gravity="center"
-                    android:text="Account Number"
-                    android:textSize="15sp"
-                    android:textColor="@color/White" />-->
+                    android:background="@color/White">
 
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/White"
-                        >
                     <EditText
-                        android:padding="5dp"
                         android:id="@+id/et_accountno_new"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_scree_edt_background"
                         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                        android:drawableRight="@drawable/acount_icon_new"
                         android:hint="Enter Account No"
                         android:inputType="number"
                         android:lines="1"
+                        android:maxLength="15"
+                        android:padding="5dp"
                         android:singleLine="true"
-                        android:textColor="@color/Black"
-                        android:drawableRight="@drawable/account_icon"/>
-                    </RelativeLayout>
+                        android:textColor="@color/Black" />
+                </RelativeLayout>
 
 
             </LinearLayout>
@@ -175,11 +173,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="5dp">
+                android:orientation="horizontal"
+                android:paddingLeft="15dp">
 
                 <!--<TextView
                     android:layout_gravity="center"
@@ -192,86 +190,84 @@
                     android:textColor="@color/White" />
 -->
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/White">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White">
 
                     <EditText
-                        android:padding="5dp"
                         android:id="@+id/et_customerid_new"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_scree_edt_background"
                         android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                        android:drawableRight="@drawable/customer_id_icon_new"
                         android:hint="Enter Customer Id"
                         android:inputType="number"
                         android:lines="1"
+                        android:maxLength="9"
+                        android:padding="5dp"
                         android:singleLine="true"
-                        android:textColor="@color/Black"
-                        android:drawableRight="@drawable/customer_id_icon"
-                        />
-                    </RelativeLayout>
+                        android:textColor="@color/Black" />
+                </RelativeLayout>
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                >
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <Button
                     android:id="@+id/btn_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/login_scree_17"
-                    android:textColor="@color/White"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1"
+                    android:background="@drawable/login_scree_17"
                     android:text="Search"
-                    />
+                    android:textColor="@color/White" />
 
                 <Button
                     android:id="@+id/btn_clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Clear"
-                    android:background="@drawable/login_scree_17"
-                    android:textColor="@color/White"
-                    android:padding="5dp"
-                    android:layout_weight="1"
                     android:layout_marginRight="30dp"
-                    />
+                    android:layout_weight="1"
+                    android:background="@drawable/login_scree_17"
+                    android:padding="5dp"
+                    android:text="Clear"
+                    android:textColor="@color/White" />
 
-               <!-- <TextView
-                    android:id="@+id/tv_error"
-                    android:layout_marginLeft="90dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Enter alteast one "
-                    android:textColor="@color/Red"
-                    android:visibility="gone"
-                    />
--->
+                <!-- <TextView
+                     android:id="@+id/tv_error"
+                     android:layout_marginLeft="90dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Enter alteast one "
+                     android:textColor="@color/Red"
+                     android:visibility="gone"
+                     />
+ -->
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="1dp"
-                android:padding="17dp"
                 android:id="@+id/linear_layout_panal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="1dp"
                 android:background="@drawable/message_pannel"
                 android:orientation="vertical"
-                android:visibility="gone"
-                >
+                android:padding="17dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -284,9 +280,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="8"
-                        android:textSize="15sp"
                         android:text="Name"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -297,7 +293,7 @@
                             android:id="@+id/tv_name_new"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
-                            android:singleLine="true"
+                            android:maxLines="2"
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff"
                             android:textSize="15sp" />
@@ -316,9 +312,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="8"
-                        android:textSize="15sp"
                         android:text="Mobile No"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -351,9 +347,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="8"
-                        android:textSize="15sp"
                         android:text="Aadhaar No"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -382,155 +378,144 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
 
                 >
 
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_camera"
-                    android:padding="5dp"
-                    android:layout_marginLeft="5dp">
-                    <ImageView
-                        android:id="@+id/img_Aadhar"
-                        android:layout_width="60dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/camera"
-                        />
-
-                </RelativeLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
-                    android:paddingLeft="15dp"
-                    android:layout_marginRight="15dp">
+                    android:paddingLeft="15dp">
 
 
-                   <!-- <TextView
-                        android:id="@+id/tv_adhrName_new"
+                    <!-- <TextView
+                         android:id="@+id/tv_adhrName_new"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:ems="8"
+                         android:textSize="15sp"
+                         android:layout_gravity="center"
+                         android:text="Name as in Aadhaar"
+                         android:textColor="@color/White" />-->
+
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="8"
-                        android:textSize="15sp"
-                        android:layout_gravity="center"
-                        android:text="Name as in Aadhaar"
-                        android:textColor="@color/White" />-->
+                        android:background="@color/White">
 
-
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/White">
                         <EditText
-                            android:padding="5dp"
                             android:id="@+id/edt_show_adhr_name_new"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_scree_edt_background"
                             android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                            android:drawableRight="@drawable/login_scree_05"
                             android:hint="Name in Aadhaar"
                             android:inputType="textPersonName"
                             android:lines="1"
+                            android:padding="5dp"
                             android:singleLine="true"
-                            android:textColor="@color/Black"
-                            android:drawableRight="@drawable/login_scree_05"
-                            />
-                        </RelativeLayout>
+                            android:textColor="@color/Black" />
+                    </RelativeLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    >
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp">
 
-                  <!--  <TextView
-                        android:id="@+id/tv_adhrno_new"
+                    <!--  <TextView
+                          android:id="@+id/tv_adhrno_new"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:ems="8"
+                          android:textSize="15sp"
+                          android:text="Aadhaar No"
+                          android:layout_gravity="center"
+                          android:textColor="@color/White" />-->
+
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="8"
-                        android:textSize="15sp"
-                        android:text="Aadhaar No"
-                        android:layout_gravity="center"
-                        android:textColor="@color/White" />-->
-
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/White">
+                        android:background="@color/White">
 
                         <EditText
-                            android:padding="5dp"
                             android:id="@+id/tv_show_adhr_no_new"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_scree_edt_background"
-                            android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+                            android:drawableRight="@drawable/aadhaar_no"
                             android:hint="Enter Aadhar No"
                             android:inputType="number"
                             android:lines="1"
+                            android:maxLength="12"
+                            android:padding="5dp"
                             android:singleLine="true"
                             android:textColor="@color/Black"
-                            android:drawableRight="@drawable/aadhaar_no"
-                            />
-                        </RelativeLayout>
 
+                            />
+                    </RelativeLayout>
 
 
                 </LinearLayout>
 
+
+                <ImageView
+                    android:id="@+id/img_Aadhar"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/camera_icon_with_background" />
+
+
                 <LinearLayout
-                    android:padding="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
                     android:layout_marginTop="5dp"
-                    >
+                    android:padding="5dp"
+                    android:weightSum="2">
+
                     <Button
-                       android:layout_marginRight="3dp"
                         android:id="@+id/btn_save_new"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Save"
-                        android:textColorHint="@color/White"
+                        android:layout_marginRight="3dp"
                         android:layout_weight="1"
                         android:background="@drawable/login_scree_17"
+                        android:hint="Save"
                         android:textColor="@color/White"
-                        />
+                        android:textColorHint="@color/White" />
 
                     <Button
-                        android:layout_marginLeft="3dp"
                         android:id="@+id/btn_reset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Reset"
+                        android:layout_marginLeft="3dp"
                         android:layout_weight="1"
-                        android:textColorHint="@color/White"
                         android:background="@drawable/login_scree_17"
+                        android:hint="Reset"
                         android:textColor="@color/White"
-                        />
+                        android:textColorHint="@color/White" />
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
 
-     <!--   <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_alignParentBottom="true"
-            android:background="#FF8A00" />-->
+        <!--   <View
+               android:layout_width="match_parent"
+               android:layout_height="20dp"
+               android:layout_alignParentBottom="true"
+               android:background="#FF8A00" />-->
     </RelativeLayout>
 
 </RelativeLayout>

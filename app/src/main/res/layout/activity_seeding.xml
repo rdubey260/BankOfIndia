@@ -169,7 +169,7 @@
                             android:padding="5dp"
                             android:singleLine="true"
                             android:textColor="@color/Black"
-                            android:drawableRight="@drawable/account_icon"
+                            android:drawableRight="@drawable/acount_icon_new"
                             />
 
                     </RelativeLayout>
@@ -218,7 +218,7 @@
                             android:padding="5dp"
                             android:singleLine="true"
                             android:textColor="@color/Black"
-                            android:drawableRight="@drawable/customer_id_icon"
+                            android:drawableRight="@drawable/customer_id_icon_new"
                             />
 
                     </RelativeLayout>
