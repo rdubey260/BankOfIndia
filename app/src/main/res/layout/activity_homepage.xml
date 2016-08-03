@@ -162,7 +162,7 @@
                                 >
 
                                 <Button
-                                   android:layout_marginBottom="2dp"
+
                                     android:id="@+id/bt_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
                                 android:gravity="center"
                                 >
                             <Button
-                                android:layout_marginBottom="2dp"
+
                                 android:id="@+id/bt_third"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

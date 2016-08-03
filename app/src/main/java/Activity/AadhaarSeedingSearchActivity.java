@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,9 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,6 +92,29 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llShowDetails = (LinearLayout) findViewById(R.id.linear_layout_panal);
         imgAadhar = (ImageView) findViewById(R.id.img_Aadhar);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int height= dm.heightPixels;
+        int width=dm.widthPixels;
+
+        if(height<=800 && width<=480){
+
+            imgAadhar.getLayoutParams().height = 81;
+            imgAadhar.getLayoutParams().width = 81;
+
+        }else if(height<=1280 && width<=720){
+
+            imgAadhar.getLayoutParams().height =  161;
+            imgAadhar.getLayoutParams().width = 142;
+        }else if(height<=1920 && width<=1080) {
+
+            imgAadhar.getLayoutParams().height = 155;
+            imgAadhar.getLayoutParams().width = 155;
+        }else if (height<=940 && width<=600){
+
+            imgAadhar.getLayoutParams().height = 102;
+            imgAadhar.getLayoutParams().width = 102;
+        }
 
         Intent in = getIntent();
         String uuserName = in.getStringExtra("name");
@@ -236,7 +258,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(AadhaarSeedingSearchActivity.this);
-            pDialog.setMessage("Fatching Data....");
+            pDialog.setMessage("Fetching Data....");
             pDialog.show();
         }
 
@@ -349,7 +371,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
 
-            //   String NewUrl = args[0];
             Map<String, String> params = new LinkedHashMap<>();
             params.put("Method", "UpdateMemberForAll");
             params.put("AadhaarNo", args[0]);
@@ -357,8 +378,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             params.put("AccountNo", args[2]);
             params.put("RecordNo", args[3]);
             params.put("SourceType", "1");
-            params.put("UserCode", "8");
-            params.put("branchcd", "8841");
+            params.put("UserCode", "13");
+            params.put("branchcd", "9999");
             params.put("ZoneCode", "1");
             params.put("ind", "2");
             params.put("Img", imgString);

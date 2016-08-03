@@ -413,10 +413,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_scree_edt_background"
-                            android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
                             android:drawableRight="@drawable/login_scree_05"
                             android:hint="Name in Aadhaar"
-                            android:inputType="textPersonName"
                             android:lines="1"
                             android:padding="5dp"
                             android:singleLine="true"
@@ -456,7 +454,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_scree_edt_background"
                             android:drawableRight="@drawable/aadhaar_no"
-                            android:hint="Enter Aadhar No"
+                            android:hint="Enter Aadhaar No"
                             android:inputType="number"
                             android:lines="1"
                             android:maxLength="12"
@@ -472,9 +470,11 @@
 
 
                 <ImageView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/img_Aadhar"
-                    android:layout_width="60dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/camera_icon_with_background" />
 
 
