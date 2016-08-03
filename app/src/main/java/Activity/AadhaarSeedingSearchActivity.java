@@ -1,6 +1,7 @@
 package activity;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -52,6 +53,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     EditText etAccountNo, etCoustomerId, etNewAadhaarNo, etNameInAadhaar;
     TextView tvvAdhr, tvMobile, tvNameCustomer;
     Button btnSearch, btnSave, btnreset, btnnclear;
+
     ArrayList<UserDataInfoBean> userinfoList = new ArrayList<>();
     ProgressDialog pDialog;
     LinearLayout llShowDetails, llSeeding;
@@ -63,6 +65,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     Bitmap bitmap;
     String imgString;
     TextView tvName, tvTime;
+    final int CROP_PIC = 2;
+    private Uri picUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +80,12 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         tvMobile = (TextView) findViewById(R.id.tv_mobileno_new);
         tvNameCustomer = (TextView) findViewById(R.id.tv_name_new);
         /*tv_error = (TextView) findViewById(R.id.tv_error);*/
+
         tvName = (TextView) findViewById(R.id.tvuname1);
         tvTime = (TextView) findViewById(R.id.tvDATe);
         btnSave = (Button) findViewById(R.id.btn_save_new);
         btnnclear = (Button) findViewById(R.id.btn_clear);
+
         btnSearch = (Button) findViewById(R.id.btn_search);
         btnreset = (Button) findViewById(R.id.btn_reset);
         llSeeding = (LinearLayout) findViewById(R.id.LinearlayoutSeeding);
@@ -101,7 +107,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // tv_error.setVisibility(View.INVISIBLE);
+
             }
 
             @Override
@@ -119,7 +125,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // tv_error.setVisibility(View.INVISIBLE);
 
             }
 
@@ -147,6 +152,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                 String Customerid = etCoustomerId.getText().toString();
 
                 if (AccNo.toString().length() != 0 || Customerid.toString().length() != 0) {
+
                     //tv_error.setVisibility(View.GONE);
                     String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=1&MobileNo=&CustomerName=&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=" + AccNo + "&RecordNo=";
                     // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
@@ -181,7 +187,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (etNameInAadhaar.getText().toString().length() == 0) {
+                /*if (etNameInAadhaar.getText().toString().length() == 0) {
                     // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
                     etNameInAadhaar.setError("Please Enter Name as in Aadhaar");
 
@@ -193,26 +199,24 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
                     } else {
                         if (etNewAadhaarNo.getText().length() == 12) {
+*/
+                if (validno() && validimage()) {
+                    String upDateAdarNo = etNewAadhaarNo.getText().toString();
+                    String upDateAdrName = etNameInAadhaar.getText().toString();
 
-                            String upDateAdarNo = etNewAadhaarNo.getText().toString();
-                            String upDateAdrName = etNameInAadhaar.getText().toString();
+                    ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected() == true) {
+                        UpdateUserData getUserData = new UpdateUserData();
+                        getUserData.execute(upDateAdarNo, upDateAdrName, AccountNo, RecordNo);
 
-                            ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                            NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                            if (networkInfo != null && networkInfo.isConnected() == true) {
-                                UpdateUserData getUserData = new UpdateUserData();
-                                getUserData.execute(upDateAdarNo, upDateAdrName, AccountNo, RecordNo);
+                    } else {
+                        Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
-                            } else {
-                                Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
-
-                            }
-                        } else {
-                            Toast.makeText(AadhaarSeedingSearchActivity.this, "please Enter the Valide Aadhaar Number ", Toast.LENGTH_LONG).show();
-                        }
                     }
                 }
             }
+
         });
 
         imgAadhar.setOnClickListener(new View.OnClickListener() {
@@ -300,6 +304,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                         String NewNameAsAadhaar = jsonObject.getString("NewNameAsAadhaar");
                         String NewMobileNo = jsonObject.getString("NewMobileNo");
 
+
+                        etAccountNo.setEnabled(false);
+                        etCoustomerId.setEnabled(false);
                         llSeeding.setVisibility(View.VISIBLE);
                         llShowDetails.setVisibility(View.VISIBLE);
                         btnSearch.setVisibility(View.GONE);
@@ -348,8 +355,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             params.put("AccountNo", args[2]);
             params.put("RecordNo", args[3]);
             params.put("SourceType", "1");
-            params.put("UserCode", "8");
-            params.put("branchcd", "8841");
+            params.put("UserCode", "13");
+            params.put("branchcd", "9999");
             params.put("ZoneCode", "1");
             params.put("ind", "2");
             params.put("Img", imgString);
@@ -443,11 +450,13 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         etAccountNo.setText("");
         etCoustomerId.setText("");
-        //   imgAadhar.setImageResource(R.drawable.camera);
         btnSearch.setVisibility(View.VISIBLE);
         llSeeding.setVisibility(View.GONE);
         llShowDetails.setVisibility(View.GONE);
         btnnclear.setVisibility(View.VISIBLE);
+        etAccountNo.setEnabled(true);
+        etCoustomerId.setEnabled(true);
+
 
 
     }
@@ -500,9 +509,56 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
             imgAadhar.setImageBitmap(bitmap);
+
         }
 
 
     }
+
+    public boolean validno()
+    {
+        if (etNewAadhaarNo.getText().length()==0 && etNewAadhaarNo.getText().length()<12){
+            Toast.makeText(AadhaarSeedingSearchActivity.this,"enter",Toast.LENGTH_LONG).show();
+        }
+         return true;
+    }
+
+    public boolean validimage()
+    {
+        if (imgAadhar.getTag()==null){
+            Toast.makeText(AadhaarSeedingSearchActivity.this,"enter image",Toast.LENGTH_LONG).show();
+        }
+        return true;
+    }
+    private void performCrop() {
+        // take care of exceptions
+        try {
+            // call the standard crop action intent (the user device may not
+            // support it)
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            // indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            // set crop properties
+            cropIntent.putExtra("crop", "true");
+            // indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 2);
+            cropIntent.putExtra("aspectY", 1);
+            // indicate output X and Y
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
+            // retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            // start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, CROP_PIC);
+        }
+        // respond to users whose devices do not support the crop action
+        catch (ActivityNotFoundException anfe) {
+            Toast toast = Toast
+                    .makeText(this, "This device doesn't support the crop action!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+
 
 }

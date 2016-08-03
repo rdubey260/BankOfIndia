@@ -152,37 +152,54 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <RelativeLayout
+                            <LinearLayout
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/home_btn_bg"
                                 android:gravity="center"
+                                android:orientation="vertical"
                                 >
 
                                 <Button
-
+                                    android:layout_marginBottom="2dp"
                                     android:id="@+id/bt_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/home_list_icon"
-                                    android:hint=""
-                                    android:textSize="20sp" />
+                                    android:textSize="20sp"
+                                    />
+                                <TextView
+
+                                    android:textColor="@color/White"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Aadhaar Seeding"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:textColor="@color/White"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(Using List)"
+                                    android:textSize="12sp"
+                                    />
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                >
+                                <Button
+                                    android:id="@+id/bt_first"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:hint="SECOND"
+                                    android:visibility="gone" />
+
                             </RelativeLayout>
-
-                           <RelativeLayout
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:gravity="center"
-                               >
-                            <Button
-                                android:id="@+id/bt_first"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:hint="SECOND"
-                                android:visibility="gone" />
-
-                           </RelativeLayout>
 
 
                         </LinearLayout>
@@ -192,23 +209,46 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <RelativeLayout
+                            <LinearLayout
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/home_btn_bg"
+                                android:orientation="vertical"
                                 android:gravity="center"
                                 >
-                            <Button
-                                android:id="@+id/bt_third"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="20sp"
-                                android:gravity="center"
-                                android:background="@drawable/home_individual_icon"
-                                />
+                                <Button
+                                    android:layout_marginBottom="2dp"
+                                    android:id="@+id/bt_third"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:gravity="center"
+                                    android:background="@drawable/home_individual_icon"
+                                    />
 
-                            </RelativeLayout>
+                                <TextView
+
+                                    android:textColor="@color/White"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Aadhaar Seeding"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:textColor="@color/White"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(Individually)"
+                                    android:textSize="12sp"
+                                    />
+
+
+
+
+
+                            </LinearLayout>
 
                             <Button
                                 android:id="@+id/bt_forth"
