@@ -2,7 +2,9 @@ package adapter;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -35,6 +37,8 @@ import java.util.Map;
 
 import activity.R;
 import bean.UserDataInfoBean;
+
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 /**
  * Created by Administrator on 22-07-2016.
@@ -127,14 +131,14 @@ public class ShowSeedingAdapter extends BaseAdapter {
 
                         if (edtAdhrNo.getText().toString().length() == 0) {
                             // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
-                            edtAdhrNo.setError(" Please Enter currect Aadhaar number");
+                            edtAdhrNo.setError(" Please enter correct aadhaar number");
 
                             return;
                         } else {
                             if (edtAdhrNoAsInAdr.getText().toString().length() == 0) {
 
                                 // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
-                                edtAdhrNoAsInAdr.setError("Please Enter Name as in Aadhaar");
+                                edtAdhrNoAsInAdr.setError("Please enter name as in aadhaar");
 
                             } else {
                                 selectcheckbox.setChecked(false);
@@ -156,7 +160,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
                                     getUserData.execute(upDateAdarNo, upDateAdrName, accountNo, recordNo);
 
                                 } else {
-                                    Toast.makeText(context, "Network Not Available", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "Network not available", Toast.LENGTH_LONG).show();
 
                                 }
                             }
@@ -279,6 +283,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
         }
 
     }
+
 
 
 }
