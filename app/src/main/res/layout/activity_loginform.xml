@@ -40,7 +40,7 @@
                     android:layout_toRightOf="@+id/btnset"
                     android:text="Aadhaar Seeding System"
                     android:textColor="@color/White"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:paddingRight="5dp"
@@ -88,10 +88,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_scree_edt_background"
-                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
                         android:drawableRight="@drawable/login_scree_login_icon"
-                        android:hint="Enter your user Name"
-                        android:inputType="textPersonName"
+                        android:hint="Enter your user name"
+                        android:inputType="text"
                         android:lines="1"
                         android:singleLine="true"
                         android:textColor="@color/Black"
@@ -114,9 +113,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_scree_edt_background"
-                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
                         android:drawableRight="@drawable/pwd_scree_password_icon"
-                        android:hint="Enter your Password"
+                        android:hint="Enter your password"
                         android:inputType="textPassword"
                         android:lines="1"
                         android:singleLine="true"

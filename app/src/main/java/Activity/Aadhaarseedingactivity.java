@@ -3,6 +3,7 @@ package activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -16,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 
 import org.json.JSONArray;
@@ -46,7 +46,8 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
     String AccNo;
     ArrayList<UserDataInfoBean> userinfoList = new ArrayList<>();
     ProgressDialog pDialog;
-    TextView tvName,tvTime;
+    TextView tvName, tvTime;
+    String UserCode, BranchCode, ZoneCode;
 
 
     @Override
@@ -55,7 +56,7 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_seeding);
 
         toolseed = (Toolbar) findViewById(R.id.tool2);
@@ -65,51 +66,63 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
         etcustomerid = (EditText) findViewById(R.id.et_customerid);
         etname = (EditText) findViewById(R.id.et_name);
         etmobileno = (EditText) findViewById(R.id.et_mobileno);
-        tvName= (TextView) findViewById(R.id.tvuname2);
-        tvTime= (TextView) findViewById(R.id.tvDATe1);
+        tvName = (TextView) findViewById(R.id.tvuname2);
+        tvTime = (TextView) findViewById(R.id.tvDATe1);
 
         Intent in = getIntent();
-        String uuserName= in.getStringExtra("name");
-        String dte= in.getStringExtra("Date");
+        String uuserName = in.getStringExtra("name");
+        String dte = in.getStringExtra("Date");
 
         tvName.setText(uuserName);
         tvTime.setText(dte);
+
+        SharedPreferences prefs = getSharedPreferences("loginData", MODE_PRIVATE);
+
+        UserCode = prefs.getString("UserCode", "defUserCode");
+        BranchCode = prefs.getString("BranchCode", "defBranchCode");
+        ZoneCode = prefs.getString("ZoneCode", "defZoneCode");
 
 
         btnnsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AccNo = etaccountno.getText().toString();
-                String Customerid = etcustomerid.getText().toString();
-                String UserName = etname.getText().toString();
-                String UserMobileno = etmobileno.getText().toString();
+                if (!etaccountno.getText().toString().equalsIgnoreCase("") || !etcustomerid.getText().toString().equalsIgnoreCase("") || !etmobileno.getText().toString().equalsIgnoreCase("") || !etname.getText().toString().equalsIgnoreCase("")) {
 
+                    AccNo = etaccountno.getText().toString();
+                    String Customerid = etcustomerid.getText().toString();
+                    String UserName = etname.getText().toString();
+                    String UserMobileno = etmobileno.getText().toString();
 
+                    String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=2&MobileNo=" + UserMobileno + "&CustomerName=" + UserName + "&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
+                    // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
 
-                String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=2&MobileNo=" + UserMobileno + "&CustomerName=" + UserName + "&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=" + AccNo + "&RecordNo=";
-                // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
+                    ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected() == true) {
+                        GetUserData getUserData = new GetUserData();
+                        getUserData.execute(url);
 
-                ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected() == true) {
-                    GetUserData getUserData = new GetUserData();
-                    getUserData.execute(url);
+                    } else {
+                        Toast.makeText(Aadhaarseedingactivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
-                } else {
-                    Toast.makeText(Aadhaarseedingactivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+                    }
+                }else{
 
+                    Toast.makeText(Aadhaarseedingactivity.this, "Enter at least one field ", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
     }
+
     class GetUserData extends AsyncTask<String, Void, String> {
         //   JSONParser jsonParser = new JSONParser();
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(Aadhaarseedingactivity.this);
-            pDialog.setMessage("Fatching Data....");
+            pDialog.setMessage("Fetching Data....");
             pDialog.show();
         }
 

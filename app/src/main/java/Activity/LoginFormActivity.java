@@ -3,6 +3,7 @@ package activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -65,16 +66,16 @@ public class LoginFormActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etUserName.getText().toString().length() == 0) {
+                if (etUserName.getText().toString().trim().length() == 0) {
                     // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
-                    etUserName.setError("please Enter user name");
+                    etUserName.setError("Please enter user name");
 
                     return;
                 } else {
-                    if (etpassword.getText().toString().length() == 0) {
+                    if (etpassword.getText().toString().trim().length() == 0) {
 
                         // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
-                        etpassword.setError("Please Enter currect password");
+                        etpassword.setError("Please enter correct password");
 
                     } else {
 
@@ -187,12 +188,20 @@ public class LoginFormActivity extends AppCompatActivity {
                         String CampCode = jsonObject.getString("CampCode");
                         String CampDesc = jsonObject.getString("CampDesc");
 
+                        SharedPreferences.Editor editor = getSharedPreferences("loginData", MODE_PRIVATE).edit();
+                        editor.putString("UserCode", UserCode);
+                        editor.putString("BranchCode", BranchCode);
+                        editor.putString("ZoneCode", ZoneCode);
+
+                        editor.commit();
 
                     }
 
                     Intent in = new Intent(LoginFormActivity.this, HomePageActivity.class);
                     in.putExtra("mytext", UserFullName);
                     startActivity(in);
+                    etUserName.setText("");
+                    etpassword.setText("");
 
 
                 } catch (JSONException e) {

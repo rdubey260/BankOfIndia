@@ -156,7 +156,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_scree_edt_background"
-                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
                         android:drawableRight="@drawable/acount_icon_new"
                         android:hint="Enter Account No"
                         android:inputType="number"
@@ -202,7 +201,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_scree_edt_background"
-                        android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
                         android:drawableRight="@drawable/customer_id_icon_new"
                         android:hint="Enter Customer Id"
                         android:inputType="number"
@@ -380,7 +378,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
 
                 >
 
