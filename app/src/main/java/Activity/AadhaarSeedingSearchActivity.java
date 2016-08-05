@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -92,6 +93,30 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llShowDetails = (LinearLayout) findViewById(R.id.linear_layout_panal);
         imgAadhar = (ImageView) findViewById(R.id.img_Aadhar);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int height= dm.heightPixels;
+        int width=dm.widthPixels;
+
+        if(height<=800 && width<=480){
+
+            imgAadhar.getLayoutParams().height = 81;
+            imgAadhar.getLayoutParams().width = 81;
+
+        }else if(height<=1280 && width<=720){
+
+            imgAadhar.getLayoutParams().height =  161;
+            imgAadhar.getLayoutParams().width = 142;
+        }else if(height<=1920 && width<=1080) {
+
+            imgAadhar.getLayoutParams().height = 155;
+            imgAadhar.getLayoutParams().width = 155;
+        }else if (height<=940 && width<=600){
+
+            imgAadhar.getLayoutParams().height = 102;
+            imgAadhar.getLayoutParams().width = 102;
+        }
+
         Intent in = getIntent();
         String uuserName = in.getStringExtra("name");
         String dte = in.getStringExtra("Date");
@@ -126,6 +151,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+
             }
 
             @Override
@@ -151,7 +177,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                 String AccNo = etAccountNo.getText().toString();
                 String Customerid = etCoustomerId.getText().toString();
 
-                if (AccNo.toString().length() != 0 || Customerid.toString().length() != 0) {
+                if ((AccNo.toString().length() != 0 && AccNo.toString().length() == 15) || (Customerid.toString().length() != 0 && Customerid.toString().length() == 9)) {
 
                     //tv_error.setVisibility(View.GONE);
                     String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=1&MobileNo=&CustomerName=&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=" + AccNo + "&RecordNo=";
@@ -169,7 +195,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    //tv_error.setVisibility(View.VISIBLE);
+                    Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid No", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -179,7 +205,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         btnreset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetData();
+           //     resetData();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -187,22 +216,12 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*if (etNameInAadhaar.getText().toString().length() == 0) {
-                    // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
-                    etNameInAadhaar.setError("Please Enter Name as in Aadhaar");
+                if (validAadharName() && validAadharNo() && validImage()) {
 
-                } else {
-                    if (etNewAadhaarNo.getText().toString().length() == 0) {
 
-                        // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
-                        etNewAadhaarNo.setError("Please Enter currect Aadhaar number");
-
-                    } else {
-                        if (etNewAadhaarNo.getText().length() == 12) {
-*/
-                if (validno() && validimage()) {
                     String upDateAdarNo = etNewAadhaarNo.getText().toString();
                     String upDateAdrName = etNameInAadhaar.getText().toString();
+
 
                     ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
@@ -214,6 +233,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                         Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
                     }
+
                 }
             }
 
@@ -222,14 +242,19 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         imgAadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
 
+
     }
+
+
+
+
 
 
     class GetUserData extends AsyncTask<String, Void, String> {
@@ -237,7 +262,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(AadhaarSeedingSearchActivity.this);
-            pDialog.setMessage("Fatching Data....");
+            pDialog.setMessage("Fetching Data....");
             pDialog.show();
         }
 
@@ -285,6 +310,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
 
             if (json != null) {
+
+               // imgAadhar.setImageBitmap(null);
+                //        imgAadhar.setBackground(getDrawable(R.drawable.camera));
                 // Toast.makeText(Aadhaarseedingactivity.this, json.toString(), Toast.LENGTH_LONG).show();
                 try {
                     userinfoList = new ArrayList<>();
@@ -347,7 +375,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
 
-            //   String NewUrl = args[0];
             Map<String, String> params = new LinkedHashMap<>();
             params.put("Method", "UpdateMemberForAll");
             params.put("AadhaarNo", args[0]);
@@ -434,6 +461,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             if (json != null) {
 
                 Toast.makeText(AadhaarSeedingSearchActivity.this, json.toString(), Toast.LENGTH_LONG).show();
+                etNewAadhaarNo.setText("");
+                etNameInAadhaar.setText("");
+                imgAadhar.setImageDrawable(null);
+
                 resetData();
 
             }
@@ -450,6 +481,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         etAccountNo.setText("");
         etCoustomerId.setText("");
+
         btnSearch.setVisibility(View.VISIBLE);
         llSeeding.setVisibility(View.GONE);
         llShowDetails.setVisibility(View.GONE);
@@ -499,37 +531,46 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         return BitmapFactory.decodeFile(path, options);
     }
 
+
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+/* if (requestCode == CAMERA_REQUEST) {
+
             //Get our saved file into a bitmap object:
-            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+           File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500, 500);
-//	       ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
+//	        ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
             imgAadhar.setImageBitmap(bitmap);
 
+    }*/
+        if (resultCode == RESULT_OK) {
+            // user is returning from capturing an image using the camera
+            if (requestCode == CAMERA_REQUEST) {
+                picUri = data.getData();
+                performCrop();
+            }
+            // user is returning from cropping the image
+            else if (requestCode == CROP_PIC) {
+                // get the returned data
+                Bundle extras = data.getExtras();
+                bitmap = extras.getParcelable("data");
+                // retrieve a reference to the ImageVie
+                // picView.setImageBitmap(graphicUtil.getRoundedShape(thePic,(float)1.5,92));
+                imgAadhar.setImageBitmap(bitmap);
+            }
         }
-
-
     }
 
-    public boolean validno()
-    {
-        if (etNewAadhaarNo.getText().length()==0 && etNewAadhaarNo.getText().length()<12){
-            Toast.makeText(AadhaarSeedingSearchActivity.this,"enter",Toast.LENGTH_LONG).show();
-        }
-         return true;
-    }
-
-    public boolean validimage()
-    {
-        if (imgAadhar.getTag()==null){
-            Toast.makeText(AadhaarSeedingSearchActivity.this,"enter image",Toast.LENGTH_LONG).show();
-        }
-        return true;
-    }
+    /**
+     * Helper method to carry out crop operation
+     */
     private void performCrop() {
         // take care of exceptions
         try {
@@ -541,7 +582,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             // set crop properties
             cropIntent.putExtra("crop", "true");
             // indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 2);
+            cropIntent.putExtra("aspectX", 1);
             cropIntent.putExtra("aspectY", 1);
             // indicate output X and Y
             cropIntent.putExtra("outputX", 256);
@@ -553,12 +594,46 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         }
         // respond to users whose devices do not support the crop action
         catch (ActivityNotFoundException anfe) {
+            // display an error message
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
             Toast toast = Toast
-                    .makeText(this, "This device doesn't support the crop action!", Toast.LENGTH_SHORT);
+                    .makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
+    public boolean validAadharNo() {
 
+        if (etNewAadhaarNo.getText().toString().equalsIgnoreCase("") && etNewAadhaarNo.getText().toString().length() < 12) {
+            Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validAadharName() {
+
+        if (etNameInAadhaar.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar Name", Toast.LENGTH_SHORT).show();
+        } else {
+            return true;
+        }
+
+        return false;
+    }
+    public boolean validImage() {
+
+        if (imgAadhar.getDrawable() == null ) {
+
+            Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Click Image", Toast.LENGTH_SHORT).show();
+        } else {
+
+            return true;
+        }
+
+        return false;
+    }
 
 
 }
+
