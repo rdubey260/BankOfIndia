@@ -147,13 +147,15 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etAccountNo.getText().toString().trim().length() < 15) {
+                    etAccountNo.setError("Enter Valid Account no");
+                }
 
-                validaAccountno();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().trim().length()==0){
+                if (s.toString().trim().length() == 0) {
 
                     etAccountNo.setError(null);
                 }
@@ -169,16 +171,19 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etCoustomerId.toString().trim().length() < 9) {
 
-                         validaCustomerId();
+                    etCoustomerId.setError("Enter Valid Id");
+                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                     if(s.toString().trim().length()==0){
+                if (s.toString().trim().length() == 0) {
 
-                         etCoustomerId.setError(null);
-                     }
+                    etCoustomerId.setError(null);
+                }
             }
         });
 
@@ -199,8 +204,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                 String AccNo = etAccountNo.getText().toString();
                 String Customerid = etCoustomerId.getText().toString();
 
-                if ((AccNo.toString().trim().length() != 0) || (Customerid.toString().trim().length() != 0 )) {
+                if ((AccNo.toString().trim().length() != 0) || (Customerid.toString().trim().length() != 0)) {
 
+                    if (AccNo.toString().trim().length() < 15 || Customerid.toString().trim().length() < 9) {
 
                         //tv_error.setVisibility(View.GONE);
                         String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=1&MobileNo=&CustomerName=&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
@@ -216,6 +222,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                             Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
                         }
+                    }
 
 
                 } else {
@@ -223,8 +230,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
                 }
             }
-
-
         });
 
         btnreset.setOnClickListener(new View.OnClickListener() {
@@ -679,15 +684,15 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         return false;
     }
 
-    public boolean validaAccountno() {
+   /* public boolean validaAccountno() {
 
-        if (etAccountNo.getText().toString().trim().length() < 15) {
+        if (etAccountNo.getText().toString().trim().length() <= 15) {
             etAccountNo.setError("Enter valid account no ");
 
           //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Account Number", Toast.LENGTH_SHORT).show();
         } else {
-               etAccountNo.setError("");
-            return true;
+
+           return true;
         }
 
         return false;
@@ -695,18 +700,18 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     public boolean validaCustomerId() {
 
-        if (etCoustomerId.getText().toString().trim().length() < 9) {
+        if (etCoustomerId.getText().toString().trim().length()<= 9) {
 
             etCoustomerId.setError("Enter valid id ");
 
           //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Coustomer Id", Toast.LENGTH_SHORT).show();
         } else {
-                  etCoustomerId.setError("");
+
             return true;
         }
 
         return false;
-    }
+    }*/
 
 
 }

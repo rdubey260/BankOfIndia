@@ -38,5 +38,6 @@
         <activity android:name=".Aadhaarseedingactivity"/>
         <activity android:name=".Showseedingactivity"/>
         <activity android:name=".AadhaarSeedingSearchActivity"/>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 </manifest>
