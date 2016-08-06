@@ -66,21 +66,21 @@ public class LoginFormActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etUserName.getText().toString().length() == 0) {
+                if (etUserName.getText().toString().trim().length() == 0) {
                     // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
                     etUserName.setError("Please enter user name");
 
                     return;
                 } else {
-                    if (etpassword.getText().toString().length() == 0) {
+                    if (etpassword.getText().toString().trim().length() == 0) {
 
                         // Toast.makeText(getApplicationContext(),"Please Enter currect password",Toast.LENGTH_SHORT);
                         etpassword.setError("Please enter correct password");
 
                     } else {
 
-                        String password = etpassword.getText().toString();
-                        username = etUserName.getText().toString();
+                        String password = etpassword.getText().toString().trim();
+                        username = etUserName.getText().toString().trim();
 
                         String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/CheckLogin?ind=0&Password=" + password + "&UserName=" + username;
 

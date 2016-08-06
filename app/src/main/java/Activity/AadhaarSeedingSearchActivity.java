@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -25,7 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +56,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     EditText etAccountNo, etCoustomerId, etNewAadhaarNo, etNameInAadhaar;
     TextView tvvAdhr, tvMobile, tvNameCustomer;
     Button btnSearch, btnSave, btnreset, btnnclear;
+
     ArrayList<UserDataInfoBean> userinfoList = new ArrayList<>();
     ProgressDialog pDialog;
     LinearLayout llShowDetails, llSeeding;
@@ -68,6 +67,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     Bitmap bitmap;
     String imgString;
     TextView tvName, tvTime;
+
     private int CAMERA_CAPTURE = 1;
     private Uri picUri = null;
     final int CROP_PIC = 2;
@@ -75,6 +75,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     static byte[] profileB;
     static Bitmap picB;
     String UserCode, BranchCode, ZoneCode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +89,12 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         tvMobile = (TextView) findViewById(R.id.tv_mobileno_new);
         tvNameCustomer = (TextView) findViewById(R.id.tv_name_new);
         /*tv_error = (TextView) findViewById(R.id.tv_error);*/
+
         tvName = (TextView) findViewById(R.id.tvuname1);
         tvTime = (TextView) findViewById(R.id.tvDATe);
         btnSave = (Button) findViewById(R.id.btn_save_new);
         btnnclear = (Button) findViewById(R.id.btn_clear);
+
         btnSearch = (Button) findViewById(R.id.btn_search);
         btnreset = (Button) findViewById(R.id.btn_reset);
         llSeeding = (LinearLayout) findViewById(R.id.LinearlayoutSeeding);
@@ -136,6 +139,27 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         tvName.setText(uuserName);
         tvTime.setText(dte);
 
+        etNewAadhaarNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validAadharNo();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().trim().length()==0){
+
+                    etNewAadhaarNo.setError(null);
+                }
+            }
+        });
+
         etAccountNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -144,12 +168,16 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // tv_error.setVisibility(View.INVISIBLE);
+
+                validaAccountno();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if(s.toString().trim().length()==0){
 
+                    etAccountNo.setError(null);
+                }
             }
         });
 
@@ -162,13 +190,16 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // tv_error.setVisibility(View.INVISIBLE);
 
+                         validaCustomerId();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                     if(s.toString().trim().length()==0){
 
+                         etCoustomerId.setError(null);
+                     }
             }
         });
 
@@ -185,15 +216,14 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 String AccNo = etAccountNo.getText().toString();
                 String Customerid = etCoustomerId.getText().toString();
 
-                if ((AccNo.toString().length() != 0 && AccNo.toString().length() == 15) || (Customerid.toString().length() != 0 && Customerid.toString().length() == 9)) {
+                if ((AccNo.toString().trim().length() != 0) || (Customerid.toString().trim().length() != 0 )) {
 
-
-                    //tv_error.setVisibility(View.GONE);
-                    String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=1&MobileNo=&CustomerName=&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
+                    if (etAccountNo.getText().toString().trim().length() == 15 || etCoustomerId.getText().toString().trim().length() ==9){
+                        //tv_error.setVisibility(View.GONE);
+                        String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=1&MobileNo=&CustomerName=&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
                     // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
 
                     ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -206,11 +236,15 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                         Toast.makeText(AadhaarSeedingSearchActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
                     }
+                }
 
                 } else {
-                    Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid No", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AadhaarSeedingSearchActivity.this, "Atleast enter one", Toast.LENGTH_LONG).show();
+
                 }
             }
+
+
         });
 
         btnreset.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +267,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                     String upDateAdarNo = etNewAadhaarNo.getText().toString();
                     String upDateAdrName = etNameInAadhaar.getText().toString();
 
+
                     ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected() == true) {
@@ -246,6 +281,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
                 }
             }
+
         });
 
         imgAadhar.setOnClickListener(new View.OnClickListener() {
@@ -255,6 +291,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                 File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);*/
+
+
                 try {
                     Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(captureIntent, CAMERA_CAPTURE);
@@ -322,45 +360,46 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected void onPostExecute(String json) {
 
 
-            if (json != null ) {
+            if (json != null) {
 
                 try {
                     userinfoList = new ArrayList<>();
                     JSONArray jsonArry = new JSONArray(json);
 
-                    if(jsonArry.length()>0){
-                    for (int i = 0; i < jsonArry.length(); i++) {
+                    if (jsonArry.length() > 0) {
+                        for (int i = 0; i < jsonArry.length(); i++) {
 
-                        JSONObject jsonObject = jsonArry.getJSONObject(i);
-                        RecordNo = jsonObject.getString("RecordNo");
-                        String CustomerId = jsonObject.getString("CustomerId");
-                        AccountNo = jsonObject.getString("AccountNo");
-                        String CustomerName = jsonObject.getString("CustomerName");
-                        String AadhaarNo = jsonObject.getString("AadhaarNo");
-                        String MobileNo = jsonObject.getString("MobileNo");
-                        String BranchCode = jsonObject.getString("BranchCode");
-                        String BranchName = jsonObject.getString("BranchName");
-                        String NewAadhaarNo = jsonObject.getString("NewAadhaarNo");
-                        String NewNameAsAadhaar = jsonObject.getString("NewNameAsAadhaar");
-                        String NewMobileNo = jsonObject.getString("NewMobileNo");
-
-
-                        etAccountNo.setEnabled(false);
-                        etCoustomerId.setEnabled(false);
-                        llSeeding.setVisibility(View.VISIBLE);
-                        llShowDetails.setVisibility(View.VISIBLE);
-                        btnSearch.setVisibility(View.GONE);
-                        btnnclear.setVisibility(View.GONE);
-                        tvvAdhr.setText(AadhaarNo);
-                        tvMobile.setText(MobileNo);
-                        tvNameCustomer.setText(CustomerName);
+                            JSONObject jsonObject = jsonArry.getJSONObject(i);
+                            RecordNo = jsonObject.getString("RecordNo");
+                            String CustomerId = jsonObject.getString("CustomerId");
+                            AccountNo = jsonObject.getString("AccountNo");
+                            String CustomerName = jsonObject.getString("CustomerName");
+                            String AadhaarNo = jsonObject.getString("AadhaarNo");
+                            String MobileNo = jsonObject.getString("MobileNo");
+                            String BranchCode = jsonObject.getString("BranchCode");
+                            String BranchName = jsonObject.getString("BranchName");
+                            String NewAadhaarNo = jsonObject.getString("NewAadhaarNo");
+                            String NewNameAsAadhaar = jsonObject.getString("NewNameAsAadhaar");
+                            String NewMobileNo = jsonObject.getString("NewMobileNo");
 
 
-                        //    userinfoList.add(new UserDataInfoBean(RecordNo, CustomerId, AccountNo, CustomerName, AadhaarNo, MobileNo, BranchCode, BranchName, NewAadhaarNo, NewNameAsAadhaar, NewMobileNo));
+                            etAccountNo.setEnabled(false);
+                            etCoustomerId.setEnabled(false);
+                            llSeeding.setVisibility(View.VISIBLE);
+                            llShowDetails.setVisibility(View.VISIBLE);
+                            btnSearch.setVisibility(View.GONE);
+                            btnnclear.setVisibility(View.GONE);
+                            tvvAdhr.setText(AadhaarNo);
+                            tvMobile.setText(MobileNo);
+                            tvNameCustomer.setText(CustomerName);
 
-                    }}else{
 
-                        Toast.makeText(AadhaarSeedingSearchActivity.this,"No result found", Toast.LENGTH_LONG).show();
+                            //    userinfoList.add(new UserDataInfoBean(RecordNo, CustomerId, AccountNo, CustomerName, AadhaarNo, MobileNo, BranchCode, BranchName, NewAadhaarNo, NewNameAsAadhaar, NewMobileNo));
+
+                        }
+                    } else {
+
+                        Toast.makeText(AadhaarSeedingSearchActivity.this, "No result found", Toast.LENGTH_LONG).show();
                     }
                     pDialog.dismiss();
 
@@ -497,7 +536,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         etAccountNo.setText("");
         etCoustomerId.setText("");
 
-        //   imgAadhar.setImageBitmap(null);
+
         btnSearch.setVisibility(View.VISIBLE);
         llSeeding.setVisibility(View.GONE);
         llShowDetails.setVisibility(View.GONE);
@@ -543,22 +582,22 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             // Decode bitmap with inSampleSize set
             options.inJustDecodeBounds = false;
 
-            return BitmapFactory.decodeFile(path, options);
-        }
-    */
+}    */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         /*if (requestCode == CAMERA_REQUEST) {
             //Get our saved file into a bitmap object:
-            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+           File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500, 500);
-//	       ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
+//	        ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
             imgAadhar.setImageBitmap(bitmap);
-        }*/
+
+    }*/
 
         if (resultCode == RESULT_OK) {
+
             if (requestCode == CAMERA_CAPTURE) {
                 // get the Uri for the captured image
 
@@ -593,6 +632,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         return stream.toByteArray();
     }
 
+    /**
+     * Helper method to carry out crop operation
+     */
     private void performCrop() {
         // take care of exceptions
         try {
@@ -607,27 +649,35 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             cropIntent.putExtra("aspectX", 1);
             cropIntent.putExtra("aspectY", 1);
             // indicate output X and Y
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
+            /*cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);*/
+
+            cropIntent.putExtra("outputX", 550);
+            cropIntent.putExtra("outputY", 650);
             // retrieve data on return
             cropIntent.putExtra("return-data", true);
             // start the activity - we handle returning in onActivityResult
             startActivityForResult(cropIntent, CROP_PIC);
-
         }
         // respond to users whose devices do not support the crop action
         catch (ActivityNotFoundException anfe) {
+            // display an error message
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
             Toast toast = Toast
-                    .makeText(AadhaarSeedingSearchActivity.this, "This device doesn't support the crop action!", Toast.LENGTH_SHORT);
+                    .makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
     public boolean validAadharNo() {
 
-        if (etNewAadhaarNo.getText().toString().equalsIgnoreCase("") && etNewAadhaarNo.getText().toString().length() < 12) {
-            Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
+        if (  etNewAadhaarNo.getText().toString().trim().length() < 12) {
+          //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
+            etNewAadhaarNo.setError("Enter valid aadhaar no ");
+
         } else {
+
+            etNewAadhaarNo.setError(null);
             return true;
         }
         return false;
@@ -635,7 +685,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     public boolean validAadharName() {
 
-        if (etNameInAadhaar.getText().toString().equalsIgnoreCase("")) {
+        if (etNameInAadhaar.getText().toString().trim().equalsIgnoreCase("")) {
             Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar Name", Toast.LENGTH_SHORT).show();
         } else {
             return true;
@@ -656,6 +706,36 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         return false;
     }
+
+    public boolean validaAccountno() {
+
+        if (etAccountNo.getText().toString().trim().length() < 15) {
+            etAccountNo.setError("Enter valid account no ");
+
+          //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Account Number", Toast.LENGTH_SHORT).show();
+        } else {
+               etAccountNo.setError(null);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean validaCustomerId() {
+
+        if (etCoustomerId.getText().toString().trim().length() < 9) {
+
+            etCoustomerId.setError("Enter valid id ");
+
+          //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Coustomer Id", Toast.LENGTH_SHORT).show();
+        } else {
+                  etCoustomerId.setError(null);
+            return true;
+        }
+
+        return false;
+    }
+
 
 }
 

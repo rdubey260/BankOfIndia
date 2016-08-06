@@ -163,6 +163,7 @@
 
                                 <Button
 
+                                    android:layout_marginBottom="2dp"
                                     android:id="@+id/bt_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -187,19 +188,19 @@
                                     />
                             </LinearLayout>
 
-                           <RelativeLayout
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:gravity="center"
-                               >
-                            <Button
-                                android:id="@+id/bt_first"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:hint="SECOND"
-                                android:visibility="gone" />
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                >
+                                <Button
+                                    android:id="@+id/bt_first"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:hint="SECOND"
+                                    android:visibility="gone" />
 
-                           </RelativeLayout>
+                            </RelativeLayout>
 
 
                         </LinearLayout>
@@ -217,15 +218,16 @@
                                 android:orientation="vertical"
                                 android:gravity="center"
                                 >
-                            <Button
 
-                                android:id="@+id/bt_third"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="20sp"
-                                android:gravity="center"
-                                android:background="@drawable/home_individual_icon"
-                                />
+                                <Button
+                                    android:layout_marginBottom="2dp"
+                                    android:id="@+id/bt_third"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:gravity="center"
+                                    android:background="@drawable/home_individual_icon"
+                                    />
 
                                 <TextView
 

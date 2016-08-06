@@ -129,7 +129,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
 
-                        if (edtAdhrNo.getText().toString().length() == 0) {
+                        if (edtAdhrNo.getText().toString().length() < 12  ) {
                             // Toast.makeText(getApplicationContext(), "Name cannot be Blank", Toast.LENGTH_LONG).show();
                             edtAdhrNo.setError(" Please enter correct aadhaar number");
 
@@ -141,6 +141,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
                                 edtAdhrNoAsInAdr.setError("Please enter name as in aadhaar");
 
                             } else {
+
                                 selectcheckbox.setChecked(false);
 
 
@@ -167,6 +168,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
                         }
                     }
                 });
+
             }
         });
 
@@ -194,8 +196,8 @@ public class ShowSeedingAdapter extends BaseAdapter {
             params.put("AccountNo", args[2]);
             params.put("RecordNo", args[3]);
             params.put("SourceType", "1");
-            params.put("UserCode", "8");
-            params.put("branchcd", "8841");
+            params.put("UserCode", "13");
+            params.put("branchcd", "9999");
             params.put("ZoneCode", "1");
             params.put("ind", "1");
 
@@ -283,8 +285,6 @@ public class ShowSeedingAdapter extends BaseAdapter {
         }
 
     }
-
-
 
 }
 
