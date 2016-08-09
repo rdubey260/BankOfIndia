@@ -378,7 +378,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
 
                 >
 
@@ -469,21 +469,20 @@
 
                 </LinearLayout>
 
-
                 <ImageView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
                     android:id="@+id/img_Aadhar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/camera_icon_with_background" />
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:padding="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:weightSum="2">
 
                     <Button

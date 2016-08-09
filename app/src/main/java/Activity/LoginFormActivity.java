@@ -79,8 +79,8 @@ public class LoginFormActivity extends AppCompatActivity {
 
                     } else {
 
-                        String password = etpassword.getText().toString();
-                        username = etUserName.getText().toString();
+                        String password = etpassword.getText().toString().trim();
+                        username = etUserName.getText().toString().trim();
 
                         String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/CheckLogin?ind=0&Password=" + password + "&UserName=" + username;
 
