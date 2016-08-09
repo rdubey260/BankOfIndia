@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.andexert.library.RippleView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +43,7 @@ public class LoginFormActivity extends AppCompatActivity {
     ProgressBar pbar;
     String UserName;
     String UserFullName;
+    RippleView Rv1,Rv2;
 
 
     @Override
@@ -58,10 +61,24 @@ public class LoginFormActivity extends AppCompatActivity {
 
         btnClear = (Button) findViewById(R.id.btnClear);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-
+        Rv1= (RippleView) findViewById(R.id.Rv1);
+        Rv2= (RippleView) findViewById(R.id.Rv2);
         etUserName = (EditText) findViewById(R.id.etUserName);
         etpassword = (EditText) findViewById(R.id.etPassword);
 
+        Rv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Rv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

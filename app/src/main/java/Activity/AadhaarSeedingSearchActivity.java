@@ -287,20 +287,27 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         imgAadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);*/
+
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.intsig.camscanner");
+                if (launchIntent == null) {
+                    // Bring user to the market or let them choose an app?
+                    launchIntent = new Intent(Intent.ACTION_VIEW);
+                    launchIntent.setData(Uri.parse("market://details?id=" + "com.intsig.camscanner"));
+                }
+
+                startActivity(launchIntent);
 
 
-                try {
+
+
+               /* try {
                     Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(captureIntent, CAMERA_CAPTURE);
                 } catch (ActivityNotFoundException anfe) {
                     Toast toast = Toast.makeText(AadhaarSeedingSearchActivity.this, "This device doesn't support the crop action!",
                             Toast.LENGTH_SHORT);
                     toast.show();
-                }
+                }*/
             }
         });
 
@@ -321,7 +328,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
             String NewUrl = args[0];
-
             HttpURLConnection ht = null;
             try {
                 URL ur = new URL(NewUrl);
