@@ -1,23 +1,22 @@
 package activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.scanlibrary.ScanActivity;
+import com.scanlibrary.ScanConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +35,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -53,6 +53,7 @@ import java.util.logging.Logger;
 import bean.UserDataInfoBean;
 
 public class AadhaarSeedingSearchActivity extends AppCompatActivity {
+    private static final String RESPONSE_CODE = "";
     EditText etAccountNo, etCoustomerId, etNewAadhaarNo, etNameInAadhaar;
     TextView tvvAdhr, tvMobile, tvNameCustomer;
     Button btnSearch, btnSave, btnreset, btnnclear;
@@ -63,7 +64,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     Reader in;
     String RecordNo, AccountNo;
     ImageView imgAadhar;
-    private static final int CAMERA_REQUEST = 1888;
+    private static final int REQUEST_CODE = 99;
     Bitmap bitmap;
     String imgString;
     TextView tvName, tvTime;
@@ -75,6 +76,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     static byte[] profileB;
     static Bitmap picB;
     String UserCode, BranchCode, ZoneCode;
+    private String selectedImagePath;
+
+
+
 
 
     @Override
@@ -100,6 +105,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llSeeding = (LinearLayout) findViewById(R.id.LinearlayoutSeeding);
         llShowDetails = (LinearLayout) findViewById(R.id.linear_layout_panal);
         imgAadhar = (ImageView) findViewById(R.id.img_Aadhar);
+        imgAadhar.setOnClickListener(new ScanButtonClickListener(ScanConstants.OPEN_CAMERA));
 
         SharedPreferences prefs = getSharedPreferences("loginData", MODE_PRIVATE);
 
@@ -238,7 +244,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                             GetUserData getUserData = new GetUserData();
                             getUserData.execute(url);
 
-
                         }
 
 
@@ -292,26 +297,44 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         });
 
-        imgAadhar.setOnClickListener(new View.OnClickListener() {
+        /*imgAadhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);*/
 
+                *//*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.intsig.camscanner");
+                if (launchIntent == null) {
+                    // Bring user to the market or let them choose an app?
+                    launchIntent = new Intent(Intent.ACTION_VIEW);
+                    launchIntent.setData(Uri.parse("market://details?id=" + "com.intsig.camscanner"));
+                }
 
-                try {
+                startActivity(launchIntent);*//*
+
+               *//* Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.intsig.camscanner");
+                 if (launchIntent == null) {
+                    // Bring user to the market or let them choose an app?
+                    launchIntent = new Intent(Intent.ACTION_PICK);
+                     launchIntent.setType("image*//**//*");
+                   *//**//* Uri uri = Uri.fromFile(new File("/sdcard/source.jpg")); //Or  content uri picked from gallery
+                    launchIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    launchIntent.putExtra("scanned_image", "sdcard/scanned.jpg");
+                    launchIntent.putExtra("pdf_path", "sdcard/processed.jpg");
+                    launchIntent.putExtra("org_image", "sdcard/org.jpg");*//**//*
+                    launchIntent.setData(Uri.parse("market://details?id=" + "com.intsig.camscanner"));
+                }
+                startActivityForResult(launchIntent, CAMERA_CAPTURE);*//*
+
+               *//* try {
                     Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(captureIntent, CAMERA_CAPTURE);
                 } catch (ActivityNotFoundException anfe) {
                     Toast toast = Toast.makeText(AadhaarSeedingSearchActivity.this, "This device doesn't support the crop action!",
                             Toast.LENGTH_SHORT);
                     toast.show();
-                }
+                }*//*
             }
         });
-
+*/
 
     }
 
@@ -329,7 +352,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
             String NewUrl = args[0];
-
             HttpURLConnection ht = null;
             try {
                 URL ur = new URL(NewUrl);
@@ -538,60 +560,58 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     }
 
 
-        public void resetData() {
+    public void resetData() {
 
-            etAccountNo.setText("");
-            etCoustomerId.setText("");
-
-
-            btnSearch.setVisibility(View.VISIBLE);
-            llSeeding.setVisibility(View.GONE);
-            llShowDetails.setVisibility(View.GONE);
-            btnnclear.setVisibility(View.VISIBLE);
-            etAccountNo.setEnabled(true);
-            etCoustomerId.setEnabled(true);
+        etAccountNo.setText("");
+        etCoustomerId.setText("");
 
 
-        }
+        btnSearch.setVisibility(View.VISIBLE);
+        llSeeding.setVisibility(View.GONE);
+        llShowDetails.setVisibility(View.GONE);
+        btnnclear.setVisibility(View.VISIBLE);
+        etAccountNo.setEnabled(true);
+        etCoustomerId.setEnabled(true);
+    }
 
-        public byte[] getBytesFromBitmap(Bitmap photo) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            return stream.toByteArray();
-        }
+    public byte[] getBytesFromBitmap(Bitmap photo) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+    }
 
-        /*
-            public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight) { // BEST QUALITY MATCH
+    /*
+        public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight) { // BEST QUALITY MATCH
 
-                //First decode with inJustDecodeBounds=true to check dimensions
-                final BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(path, options);
+            //First decode with inJustDecodeBounds=true to check dimensions
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(path, options);
 
-                // Calculate inSampleSize, Raw height and width of image
-                final int height = options.outHeight;
-                final int width = options.outWidth;
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
-                int inSampleSize = 1;
+            // Calculate inSampleSize, Raw height and width of image
+            final int height = options.outHeight;
+            final int width = options.outWidth;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            int inSampleSize = 1;
 
-                if (height > reqHeight) {
-                    inSampleSize = Math.round((float) height / (float) reqHeight);
-                }
-                int expectedWidth = width / inSampleSize;
+            if (height > reqHeight) {
+                inSampleSize = Math.round((float) height / (float) reqHeight);
+            }
+            int expectedWidth = width / inSampleSize;
 
-                if (expectedWidth > reqWidth) {
-                    //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
-                    inSampleSize = Math.round((float) width / (float) reqWidth);
-                }
+            if (expectedWidth > reqWidth) {
+                //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
+                inSampleSize = Math.round((float) width / (float) reqWidth);
+            }
 
-                options.inSampleSize = inSampleSize;
+            options.inSampleSize = inSampleSize;
 
-                // Decode bitmap with inSampleSize set
-                options.inJustDecodeBounds = false;
+            // Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false;
 
-    }    */
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        /*if (requestCode == CAMERA_REQUEST) {
+}    */
+  /*  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        *//*if (requestCode == CAMERA_REQUEST) {
             //Get our saved file into a bitmap object:
            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500, 500);
@@ -601,152 +621,215 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
             imgAadhar.setImageBitmap(bitmap);
 
-    }*/
+    }*//*
 
-            if (resultCode == RESULT_OK) {
 
-                if (requestCode == CAMERA_CAPTURE) {
-                    // get the Uri for the captured image
+        if (resultCode == RESULT_OK) {
 
-                    picUri = data.getData();
-                    performCrop();
-                }
-                // user is returning from cropping the image
-                else if (requestCode == CROP_PIC) {
-                    // get the returned data
-                    Bundle extras = data.getExtras();
-                    // get the cropped bitmap
-                    Bitmap thePic = extras.getParcelable("data");
-                    picByte = getImageBytes(thePic);
-                    setProfileImageByte(thePic, picByte);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    thePic.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    imgString = Base64.encodeToString(getBytesFromBitmap(thePic), Base64.NO_WRAP);
-                    imgAadhar.setImageBitmap(thePic);
+            if (requestCode == CAMERA_CAPTURE) {
+                // get the Uri for the captured image
 
-                }
+                picUri = data.getData();
+                performCrop();
+            }
+            // user is returning from cropping the image
+            else if (requestCode == CROP_PIC) {
+                // get the returned data
+                Bundle extras = data.getExtras();
+                // get the cropped bitmap
+                Bitmap thePic = extras.getParcelable("data");
+                picByte = getImageBytes(thePic);
+                setProfileImageByte(thePic, picByte);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                thePic.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                imgString = Base64.encodeToString(getBytesFromBitmap(thePic), Base64.NO_WRAP);
+                imgAadhar.setImageBitmap(thePic);
+
             }
         }
+    }*/
 
-        public  void setProfileImageByte(Bitmap picBitmap, byte[] profileByte) {
-            picB = picBitmap;
-            profileB = profileByte;
+
+    public String getPath(Uri uri) {
+
+        if( uri == null ) {
+            return null;
         }
 
-        public  byte[] getImageBytes(Bitmap bitmap) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            return stream.toByteArray();
+        // this will only work for images selected from gallery
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        if( cursor != null ){
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
         }
 
-        /**
-         * Helper method to carry out crop operation
-         */
-        private void performCrop() {
-            // take care of exceptions
-            try {
-                // call the standard crop action intent (the user device may not
-                // support it)
-                Intent cropIntent = new Intent("com.android.camera.action.CROP");
-                // indicate image type and Uri
-                cropIntent.setDataAndType(picUri, "image/*");
-                // set crop properties
-                cropIntent.putExtra("crop", "true");
-                // indicate aspect of desired crop
-                cropIntent.putExtra("aspectX", 1);
-                cropIntent.putExtra("aspectY", 1);
-                // indicate output X and Y
+        return uri.getPath();
+    }
+
+
+    public void setProfileImageByte(Bitmap picBitmap, byte[] profileByte) {
+        picB = picBitmap;
+        profileB = profileByte;
+    }
+
+    public byte[] getImageBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    /**
+     * Helper method to carry out crop operation
+     */
+    private void performCrop() {
+        // take care of exceptions
+        try {
+            // call the standard crop action intent (the user device may not
+            // support it)
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            // indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            // set crop properties
+            cropIntent.putExtra("crop", "true");
+            // indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            // indicate output X and Y
             /*cropIntent.putExtra("outputX", 256);
             cropIntent.putExtra("outputY", 256);*/
 
-                cropIntent.putExtra("outputX", 550);
-                cropIntent.putExtra("outputY", 650);
-                // retrieve data on return
-                cropIntent.putExtra("return-data", true);
-                // start the activity - we handle returning in onActivityResult
-                startActivityForResult(cropIntent, CROP_PIC);
-            }
-            // respond to users whose devices do not support the crop action
-            catch (ActivityNotFoundException anfe) {
-                // display an error message
-                String errorMessage = "Whoops - your device doesn't support the crop action!";
-                Toast toast = Toast.makeText(AadhaarSeedingSearchActivity.this, errorMessage, Toast.LENGTH_SHORT);
-                toast.show();
-            }
+            cropIntent.putExtra("outputX", 550);
+            cropIntent.putExtra("outputY", 650);
+            // retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            // start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, CROP_PIC);
+        }
+        // respond to users whose devices do not support the crop action
+        catch (ActivityNotFoundException anfe) {
+            // display an error message
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
+            Toast toast = Toast.makeText(AadhaarSeedingSearchActivity.this, errorMessage, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+
+    private class ScanButtonClickListener implements View.OnClickListener {
+
+        private int preference;
+
+        public ScanButtonClickListener(int preference) {
+            this.preference = preference;
         }
 
-        public boolean validAadharNo() {
-
-            if (etNewAadhaarNo.getText().toString().trim().length() < 12) {
-                //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
-                etNewAadhaarNo.setError("Enter valid aadhaar no ");
-
-            } else {
-
-                etNewAadhaarNo.setError(null);
-                return true;
-            }
-            return false;
+        public ScanButtonClickListener() {
         }
 
-        public boolean validAadharName() {
+        @Override
+        public void onClick(View v) {
+            startScan(preference);
+        }
+    }
 
-            if (etNameInAadhaar.getText().toString().trim().equalsIgnoreCase("")) {
-                Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar Name", Toast.LENGTH_SHORT).show();
-            } else {
-                return true;
+    protected void startScan(int preference) {
+        Intent intent = new Intent(this, ScanActivity.class);
+        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getExtras().getParcelable(ScanConstants.SCANNED_RESULT);
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                getContentResolver().delete(uri, null, null);
+                imgAadhar.setScaleType(ImageView.ScaleType.FIT_XY);
+                imgAadhar.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        }
+    }
 
-            return false;
+    public boolean validAadharNo() {
+
+        if (etNewAadhaarNo.getText().toString().trim().length() < 12) {
+            //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
+            etNewAadhaarNo.setError("Enter valid aadhaar no ");
+
+        } else {
+
+            etNewAadhaarNo.setError(null);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validAadharName() {
+
+        if (etNameInAadhaar.getText().toString().trim().equalsIgnoreCase("")) {
+            Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar Name", Toast.LENGTH_SHORT).show();
+        } else {
+            return true;
         }
 
-        public boolean validImage() {
+        return false;
+    }
 
-            if (imgAadhar.getDrawable() == null) {
+    public boolean validImage() {
 
-                Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Click Image", Toast.LENGTH_SHORT).show();
-            } else {
+        if (imgAadhar.getDrawable() == null) {
 
-                return true;
-            }
+            Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Click Image", Toast.LENGTH_SHORT).show();
+        } else {
 
-            return false;
+            return true;
         }
 
-        public boolean validaAccountno() {
+        return false;
+    }
 
-            if (etAccountNo.getText().toString().trim().length() <= 15) {
-                etAccountNo.setError("Enter valid account no ");
+    public boolean validaAccountno() {
 
-                //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Account Number", Toast.LENGTH_SHORT).show();
-            } else {
+        if (etAccountNo.getText().toString().trim().length() <= 15) {
+            etAccountNo.setError("Enter valid account no ");
+
+            //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Account Number", Toast.LENGTH_SHORT).show();
+        } else {
 
 
-                etAccountNo.setError(null);
-                return true;
+            etAccountNo.setError(null);
+            return true;
 
-            }
-
-            return false;
         }
 
-        public boolean validaCustomerId() {
+        return false;
+    }
 
-            if (etCoustomerId.getText().toString().trim().length() <= 9) {
+    public boolean validaCustomerId() {
 
-                etCoustomerId.setError("Enter valid id ");
+        if (etCoustomerId.getText().toString().trim().length() <= 9) {
 
-                //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Coustomer Id", Toast.LENGTH_SHORT).show();
-            } else {
+            etCoustomerId.setError("Enter valid id ");
+
+            //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Coustomer Id", Toast.LENGTH_SHORT).show();
+        } else {
 
 
-                etCoustomerId.setError(null);
+            etCoustomerId.setError(null);
 
-                return true;
-            }
-
-            return false;
+            return true;
         }
+
+        return false;
+    }
 
 }
 
