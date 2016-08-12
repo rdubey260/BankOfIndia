@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -198,7 +199,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (etCoustomerId.toString().trim().length() < 9) {
+                if (etCoustomerId.getText().toString().trim().length() < 9) {
 
                     etCoustomerId.setError("Enter Valid Id");
                 }
@@ -749,10 +750,13 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             Bitmap bitmap = null;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                getContentResolver().delete(uri, null, null);
+                //getContentResolver().delete(uri, null, null);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
                 imgAadhar.setScaleType(ImageView.ScaleType.FIT_XY);
                 imgAadhar.setImageBitmap(bitmap);
-            } catch (IOException e) {
+            }   catch (IOException e) {
                 e.printStackTrace();
             }
         }
