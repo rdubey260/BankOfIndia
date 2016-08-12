@@ -198,7 +198,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (etCoustomerId.toString().trim().length() < 9) {
+                if (etCoustomerId.getText().toString().trim().length() < 9) {
 
                     etCoustomerId.setError("Enter Valid Id");
                 }

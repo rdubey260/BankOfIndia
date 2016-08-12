@@ -378,7 +378,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
 
                 >
 
@@ -414,9 +414,11 @@
                             android:background="@drawable/login_scree_edt_background"
                             android:drawableRight="@drawable/login_scree_05"
                             android:hint="Name in Aadhaar"
+                            android:digits="abcddshsdgidgsuyhdsgfkdsshdiDSKJHKJSDHFDHSKHDSLHFDSUUIWEVASHJD DSKJHKJSDHKJHFKSDH"
                             android:lines="1"
                             android:padding="5dp"
                             android:singleLine="true"
+                            android:inputType="textPersonName"
                             android:textColor="@color/Black" />
                     </RelativeLayout>
 
