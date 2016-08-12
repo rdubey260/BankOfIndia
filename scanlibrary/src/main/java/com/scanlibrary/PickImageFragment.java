@@ -24,7 +24,6 @@ import java.util.Date;
  * Created by jhansi on 04/04/15.
  */
 public class PickImageFragment extends Fragment {
-
     private View view;
     private ImageButton cameraButton;
     private ImageButton galleryButton;

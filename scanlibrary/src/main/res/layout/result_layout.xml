@@ -14,9 +14,10 @@
         android:fillViewport="false">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            >
 
 
             <Button
@@ -24,28 +25,34 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Original" />
+                android:textColor="#FFFFFF"
+                android:text="Original"
+                android:background="@drawable/login_scree_17"/>
 
             <Button
                 android:id="@+id/magicColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Magic color" />
+                android:text="Magic color"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/login_scree_17"/>
 
             <Button
                 android:id="@+id/grayMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Gray Mode" />
+                android:text="Gray Mode"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/BWMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="B and W" />
+                android:text="B and W"
+                android:visibility="gone"/>
         </LinearLayout>
 
     </HorizontalScrollView>
@@ -55,8 +62,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/bottom_background_color"
+        android:background="@drawable/login_scree_17"
         android:orientation="horizontal"
+        android:textColor="#FFFFFF"
         android:padding="@dimen/bottom_bar_padding"
         android:text="@string/done"></Button>
 
