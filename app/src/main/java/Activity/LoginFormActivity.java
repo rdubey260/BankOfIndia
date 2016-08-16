@@ -108,6 +108,7 @@ public class LoginFormActivity extends AppCompatActivity {
                             getUserData.execute(url);
 
                         } else {
+
                             Toast.makeText(LoginFormActivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
                         }
