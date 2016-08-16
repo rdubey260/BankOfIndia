@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Gray Mode"
-                android:visibility="gone"/>
+                android:background="@drawable/login_scree_17"
+                />
 
             <Button
                 android:id="@+id/BWMode"
@@ -52,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="B and W"
-                android:visibility="gone"/>
+                android:background="@drawable/login_scree_17"
+                />
         </LinearLayout>
 
     </HorizontalScrollView>
