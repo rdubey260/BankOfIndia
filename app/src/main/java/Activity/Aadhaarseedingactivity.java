@@ -10,6 +10,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,31 +90,105 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
 
                 if (!etaccountno.getText().toString().equalsIgnoreCase("") || !etcustomerid.getText().toString().equalsIgnoreCase("") || !etmobileno.getText().toString().equalsIgnoreCase("") || !etname.getText().toString().equalsIgnoreCase("")) {
 
-                    AccNo = etaccountno.getText().toString();
-                    String Customerid = etcustomerid.getText().toString();
-                    String UserName = etname.getText().toString();
-                    String UserMobileno = etmobileno.getText().toString();
+                    if (etaccountno.getText().toString().length() == 15 || etcustomerid.getText().toString().length() == 9 || etname.getText().toString().trim().length() != 0 || isValidPhoneNumber(etmobileno.getText().toString())) {
 
-                    String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=2&MobileNo=" + UserMobileno + "&CustomerName=" + UserName + "&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
-                    // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
+                        AccNo = etaccountno.getText().toString();
+                        String Customerid = etcustomerid.getText().toString();
+                        String UserName = etname.getText().toString();
+                        String UserMobileno = etmobileno.getText().toString();
 
-                    ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                    NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                    if (networkInfo != null && networkInfo.isConnected() == true) {
-                        GetUserData getUserData = new GetUserData();
-                        getUserData.execute(url);
+                        String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=2&MobileNo=" + UserMobileno + "&CustomerName=" + UserName + "&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
+                        // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
 
-                    } else {
-                        Toast.makeText(Aadhaarseedingactivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+                        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                        if (networkInfo != null && networkInfo.isConnected() == true) {
+                            GetUserData getUserData = new GetUserData();
+                            getUserData.execute(url);
 
+                        } else {
+                            Toast.makeText(Aadhaarseedingactivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
+
+                        }
                     }
-                }else{
+                    } else {
 
-                    Toast.makeText(Aadhaarseedingactivity.this, "Enter at least one field ", Toast.LENGTH_LONG).show();
-                }
+                        Toast.makeText(Aadhaarseedingactivity.this, "Enter at least one field ", Toast.LENGTH_LONG).show();
+                    }
+
 
             }
         });
+
+        etaccountno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etaccountno.getText().toString().trim().length() < 15) {
+                    etaccountno.setError("Enter Valid Account no");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().trim().length() == 0) {
+
+                    etaccountno.setError(null);
+                }
+            }
+        });
+
+        etcustomerid.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etcustomerid.getText().toString().trim().length() < 9) {
+                    etcustomerid.setError("Enter Valid Customer Id ");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().trim().length() == 0) {
+
+                    etcustomerid.setError(null);
+                }
+            }
+        });
+
+        etmobileno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etmobileno.getText().toString().trim().length() < 10) {
+                    etmobileno.setError("Enter Valid Mobile no");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().trim().length() == 0) {
+
+                    etmobileno.setError(null);
+                }
+            }
+        });
+
 
     }
 
@@ -230,11 +305,29 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                 }
 
             }
-
-
         }
 
     }
 
+ /* public boolean validaMobileno() {
 
+        if (!android.util.Patterns.PHONE.matcher(etmobileno.getText().toString()).matches()) {
+            etmobileno.setError("enter valid no");
+
+            //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Please Enter valid Account Number", Toast.LENGTH_SHORT).show();
+        } else {
+
+            etmobileno.setError(null);
+            return true;
+
+        }
+          return  false;
+    }*/
+   private boolean isValidPhoneNumber(CharSequence phoneNumber) {
+       if (phoneNumber.length()!=10) {
+           return false;
+       } else {
+           return android.util.Patterns.PHONE.matcher(phoneNumber).matches();
+       }
+   }
 }

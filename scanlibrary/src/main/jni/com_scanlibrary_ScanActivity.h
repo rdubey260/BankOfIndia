@@ -79,8 +79,6 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getGrayBitmap
 (JNIEnv *, jobject, jobject);
 
 
-
-
 #ifdef __cplusplus
 }
 #endif

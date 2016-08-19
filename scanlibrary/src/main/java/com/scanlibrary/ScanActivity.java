@@ -67,8 +67,6 @@ public class ScanActivity extends Activity implements IScanner {
 
     public native Bitmap getBWBitmap(Bitmap bitmap);
 
-    public native Bitmap getRedBitmap(Bitmap bitmap);
-
     public native float[] getPoints(Bitmap bitmap);
 
     static {

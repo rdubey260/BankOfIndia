@@ -2,43 +2,21 @@ package adapter;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
+import activity.DialogfragmentActivity;
 import activity.R;
 import bean.UserDataInfoBean;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 /**
  * Created by Administrator on 22-07-2016.
@@ -96,9 +74,16 @@ public class ShowSeedingAdapter extends BaseAdapter {
         selectcheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String accountNo = userinfoList.get(position).getAccountNo();
+                String recordNo = userinfoList.get(position).getRecordNo();
 
+                Intent in = new Intent(context, DialogfragmentActivity.class);
+                in.putExtra("recordNo",recordNo);
+                in.putExtra("accountNo",accountNo);
+                context.startActivity(in);
+                selectcheckbox.setChecked(false);
 
-                dialog = new Dialog(context);
+                /*dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog);
                 final EditText edtAdhrNo = (EditText) dialog.findViewById(R.id.et_dialog_adhr);
@@ -147,8 +132,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
 
                                 String upDateAdarNo = edtAdhrNo.getText().toString();
                                 String upDateAdrName = edtAdhrNoAsInAdr.getText().toString();
-                                String accountNo = userinfoList.get(position).getAccountNo();
-                                String recordNo = userinfoList.get(position).getRecordNo();
+
 
                                 //  JsonParams jsnp= new JsonParams(upDateAdarNo,upDateAdrName,"8841","1",accountNo,recordNo,"1","8");
                                 //   String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/UpdateMember?"+String.valueOf(jsnp);
@@ -167,15 +151,16 @@ public class ShowSeedingAdapter extends BaseAdapter {
                             }
                         }
                     }
-                });
+                });*/
 
             }
         });
 
         return convertView;
     }
+}
 
-    class UpdateUserData extends AsyncTask<String, Void, String> {
+    /*class UpdateUserData extends AsyncTask<String, Void, String> {
 
 
         @Override
@@ -286,7 +271,7 @@ public class ShowSeedingAdapter extends BaseAdapter {
 
     }
 
-}
+}*/
 
 
 

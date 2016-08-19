@@ -23,6 +23,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 >
 
                 <ImageView
@@ -61,9 +62,14 @@
             android:src="@drawable/login_scree_orange_bar" />
 </LinearLayout>
 
+    <RelativeLayout
+        android:layout_below="@+id/s_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
 
     <LinearLayout
-        android:layout_below="@+id/s_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -150,11 +156,22 @@
                    android:layout_height="match_parent"
                    >
                </ListView>
+
+
            </LinearLayout>
 
 
        </HorizontalScrollView>
     </LinearLayout>
+        <FrameLayout
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/continner"
+            >
+
+        </FrameLayout>
+    </RelativeLayout>
 
 
 

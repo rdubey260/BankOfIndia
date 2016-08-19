@@ -14,52 +14,38 @@
         android:fillViewport="false">
 
         <LinearLayout
-
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
-            <Button
 
+            <Button
                 android:id="@+id/original"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/login_scree_17"
-                android:text="Original"
-                android:textColor="#FFFFFF" />
+                android:text="Original" />
 
             <Button
-
                 android:id="@+id/magicColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/login_scree_17"
-                android:text="Magic color"
-                android:textColor="#FFFFFF" />
+                android:text="Magic color" />
 
             <Button
-
                 android:id="@+id/grayMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/login_scree_17"
-                android:text="Gray Mode"
-                android:textColor="#FFFFFF"
-                android:visibility="visible" />
+                android:text="Gray Mode" />
 
             <Button
-
                 android:id="@+id/BWMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/login_scree_17"
-                android:text="B and W"
-                android:textColor="#FFFFFF"
-                android:visibility="visible" />
+                android:text="B and W" />
         </LinearLayout>
 
     </HorizontalScrollView>
@@ -69,16 +55,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/login_scree_17"
+        android:background="@color/bottom_background_color"
         android:orientation="horizontal"
         android:padding="@dimen/bottom_bar_padding"
-        android:text="@string/done"
-        android:textColor="#FFFFFF">
+        android:text="@string/done"></Button>
 
-    </Button>
 
     <FrameLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/doneButton"
@@ -92,7 +75,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/scanPadding" />
-
     </FrameLayout>
 
 

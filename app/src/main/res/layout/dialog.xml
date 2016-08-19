@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#55000000"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_height="match_parent"
+    android:background="#95000000"
+    android:padding="15dp"
+    android:gravity="center">
 
 
     <LinearLayout
+        android:padding="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/message_pannel"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:layout_marginRight="5dp">
 
            <!-- <TextView
                 android:id="@+id/tv_dialog_adhr"
@@ -62,7 +66,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:layout_marginRight="5dp">
 
             <!--<TextView
                 android:id="@+id/tv_no_per_adhr"
@@ -103,12 +108,23 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/img_Aadharimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/camera_icon_with_background" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="2"
+            android:layout_marginBottom="35dp"
+            android:layout_marginRight="10dp"
+            >
 
             <Button
                 android:id="@+id/bt_diaog_exit"
@@ -127,7 +143,8 @@
                 android:hint="Clear"
                 android:textColorHint="@color/White"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/login_scree_17"/>
+                android:background="@drawable/login_scree_17"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/bt_dialog_save"
@@ -147,4 +164,4 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -133,6 +133,7 @@
                 android:layout_margin="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="wrap_content"
@@ -141,10 +142,6 @@
                     android:background="@drawable/login_scree_17"
                     android:text="Login"
                     android:textColor="@color/White" />
-
-
-
-
 
                 <Button
                     android:id="@+id/btnClear"
