@@ -54,7 +54,8 @@ import java.util.logging.Logger;
 import bean.UserDataInfoBean;
 
 public class AadhaarSeedingSearchActivity extends AppCompatActivity {
-    private static final String RESPONSE_CODE = "";
+
+    private static final String RESPONSE_CODE = null;
     EditText etAccountNo, etCoustomerId, etNewAadhaarNo, etNameInAadhaar;
     TextView tvvAdhr, tvMobile, tvNameCustomer;
     Button btnSearch, btnSave, btnreset, btnnclear;
@@ -78,9 +79,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
     static Bitmap picB;
     String UserCode, BranchCode, ZoneCode;
     private String selectedImagePath;
-
-
-
 
 
     @Override
@@ -114,7 +112,6 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         BranchCode = prefs.getString("BranchCode", "defBranchCode");
         ZoneCode = prefs.getString("ZoneCode", "defZoneCode");
 
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int height = dm.heightPixels;
@@ -129,6 +126,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             imgAadhar.getLayoutParams().height = 161;
             imgAadhar.getLayoutParams().width = 142;
+
         } else if (height <= 1920 && width <= 1080) {
 
             imgAadhar.getLayoutParams().height = 155;
@@ -653,14 +651,14 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     public String getPath(Uri uri) {
 
-        if( uri == null ) {
+        if (uri == null) {
             return null;
         }
 
         // this will only work for images selected from gallery
-        String[] projection = { MediaStore.Images.Media.DATA };
+        String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = managedQuery(uri, projection, null, null, null);
-        if( cursor != null ){
+        if (cursor != null) {
             int column_index = cursor
                     .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
@@ -756,7 +754,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
                 imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
                 imgAadhar.setScaleType(ImageView.ScaleType.FIT_XY);
                 imgAadhar.setImageBitmap(bitmap);
-            }   catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
