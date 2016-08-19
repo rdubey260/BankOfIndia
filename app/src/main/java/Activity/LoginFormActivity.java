@@ -62,9 +62,6 @@ public class LoginFormActivity extends AppCompatActivity {
         etUserName = (EditText) findViewById(R.id.etUserName);
         etpassword = (EditText) findViewById(R.id.etPassword);
 
-
-
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,8 +109,6 @@ public class LoginFormActivity extends AppCompatActivity {
             }
         });
     }
-
-
     class GetUserData extends AsyncTask<String, Void, String> {
 
         @Override

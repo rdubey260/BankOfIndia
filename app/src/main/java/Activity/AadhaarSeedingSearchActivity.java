@@ -55,7 +55,7 @@ import bean.UserDataInfoBean;
 
 public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
-    private static final String RESPONSE_CODE = "";
+    private static final String RESPONSE_CODE = null;
     EditText etAccountNo, etCoustomerId, etNewAadhaarNo, etNameInAadhaar;
     TextView tvvAdhr, tvMobile, tvNameCustomer;
     Button btnSearch, btnSave, btnreset, btnnclear;
