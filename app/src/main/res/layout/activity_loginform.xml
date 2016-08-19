@@ -133,13 +133,6 @@
                 android:layout_margin="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
-
-                <com.andexert.library.RippleView
-                    android:id="@+id/Rv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    rv_centered="true">
-
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="wrap_content"
@@ -149,13 +142,9 @@
                     android:text="Login"
                     android:textColor="@color/White" />
 
-                </com.andexert.library.RippleView>
 
-                <com.andexert.library.RippleView
-                    android:id="@+id/Rv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:rv_centered="true">
+
+
 
                 <Button
                     android:id="@+id/btnClear"
@@ -164,7 +153,7 @@
                     android:background="@drawable/login_scree_17"
                     android:text="Clear"
                     android:textColor="@color/White" />
-                </com.andexert.library.RippleView>
+
 
             </LinearLayout>
 
