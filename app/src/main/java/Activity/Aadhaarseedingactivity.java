@@ -44,11 +44,12 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
     Toolbar toolseed;
     Button btnnsearch;
     EditText etaccountno, etcustomerid, etname, etmobileno;
-    String AccNo;
+    String AccNo,UserName,UserMobileno,Customerid;
     ArrayList<UserDataInfoBean> userinfoList = new ArrayList<>();
     ProgressDialog pDialog;
     TextView tvName, tvTime;
     String UserCode, BranchCode, ZoneCode;
+    String uuserName,dte;
 
 
     @Override
@@ -71,8 +72,8 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
         tvTime = (TextView) findViewById(R.id.tvDATe1);
 
         Intent in = getIntent();
-        String uuserName = in.getStringExtra("name");
-        String dte = in.getStringExtra("Date");
+         uuserName = in.getStringExtra("name");
+         dte = in.getStringExtra("Date");
 
         tvName.setText(uuserName);
         tvTime.setText(dte);
@@ -93,14 +94,14 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                     if (etaccountno.getText().toString().length() == 15 || etcustomerid.getText().toString().length() == 9 || etname.getText().toString().trim().length() != 0 || isValidPhoneNumber(etmobileno.getText().toString())) {
 
                         AccNo = etaccountno.getText().toString();
-                        String Customerid = etcustomerid.getText().toString();
-                        String UserName = etname.getText().toString();
-                        String UserMobileno = etmobileno.getText().toString();
+                        Customerid = etcustomerid.getText().toString();
+                        UserName = etname.getText().toString();
+                        UserMobileno = etmobileno.getText().toString();
 
                         String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=" + Customerid + "&SourceType=2&MobileNo=" + UserMobileno + "&CustomerName=" + UserName + "&AadhaarNo=&UserCode=" + UserCode + "&Campcd=1&branchcd=" + BranchCode + "&ZoneCode=" + ZoneCode + "&AccountNo=" + AccNo + "&RecordNo=";
                         // String url = "http://103.21.54.52/BOIWebAPI/api/BoiMember/GetRecord?ind=1&CustomerId=&SourceType=2&MobileNo=&CustomerName=amit%20yadav&AadhaarNo=&UserCode=8&Campcd=1&branchcd=8841&ZoneCode=1&AccountNo=&RecordNo=";
 
-                        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                      /*  ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
                         if (networkInfo != null && networkInfo.isConnected() == true) {
                             GetUserData getUserData = new GetUserData();
@@ -109,7 +110,17 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(Aadhaarseedingactivity.this, "Network Not Available", Toast.LENGTH_LONG).show();
 
-                        }
+                        }*/
+                        Intent in = new Intent(Aadhaarseedingactivity.this, Showseedingactivity.class);
+                     //   in.putExtra("list", userinfoList);
+                        in.putExtra("coustomerId",Customerid);
+                        in.putExtra("AccNo",AccNo);
+                        in.putExtra("UserMobileno",UserMobileno);
+                        in.putExtra("UserName",UserName);
+                        in.putExtra("uuserName",uuserName);
+                        in.putExtra("dte",dte);
+                        startActivity(in);
+
                     }
                     } else {
 
@@ -196,9 +207,9 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
         //   JSONParser jsonParser = new JSONParser();
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(Aadhaarseedingactivity.this);
+           /* pDialog = new ProgressDialog(Aadhaarseedingactivity.this);
             pDialog.setMessage("Fetching Data....");
-            pDialog.show();
+            pDialog.show();*/
         }
 
         @Override
@@ -292,11 +303,8 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                         userinfoList.add(new UserDataInfoBean(RecordNo, CustomerId, AccountNo, CustomerName, AadhaarNo, MobileNo, BranchCode, BranchName, NewAadhaarNo, NewNameAsAadhaar, NewMobileNo));
 
                     }
-                    pDialog.dismiss();
+                  //  pDialog.dismiss();
                     if (userinfoList != null) {
-                        Intent in = new Intent(Aadhaarseedingactivity.this, Showseedingactivity.class);
-                        in.putExtra("list", userinfoList);
-                        startActivity(in);
 
                     }
 

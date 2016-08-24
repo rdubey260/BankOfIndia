@@ -196,7 +196,7 @@ public class DialogfragmentActivity extends Activity {
         @Override
         protected void onPreExecute() {
            pDialog = new ProgressDialog(DialogfragmentActivity.this);
-            pDialog.setMessage("Fatching Data....");
+            pDialog.setMessage("Updating....");
             pDialog.show();
         }
 
