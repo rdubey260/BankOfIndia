@@ -6,6 +6,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
@@ -135,6 +137,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             imgAadhar.getLayoutParams().height = 102;
             imgAadhar.getLayoutParams().width = 102;
+        } else if (height <= 2560&& width <= 1440) {
+
+            imgAadhar.getLayoutParams().height = 240;
+            imgAadhar.getLayoutParams().width = 220;
         }
 
         Intent in = getIntent();
@@ -730,14 +736,26 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            startScan(preference);
+
+            MarshMelloPermission marshMallowPermission = new MarshMelloPermission(AadhaarSeedingSearchActivity.this);
+            if (!marshMallowPermission.checkPermissionForCamera()) {
+                marshMallowPermission.requestPermissionForCamera();
+            }else{
+                if (!marshMallowPermission.checkPermissionForExternalStorage()) {
+                marshMallowPermission.requestPermissionForExternalStorage();
+            }else {
+                    startScan(preference);
+                }
+            }
         }
     }
 
     protected void startScan(int preference) {
-        Intent intent = new Intent(this, ScanActivity.class);
-        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
-        startActivityForResult(intent, REQUEST_CODE);
+
+            Intent intent = new Intent(this, ScanActivity.class);
+            intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
+            startActivityForResult(intent, REQUEST_CODE);
+
     }
 
     @Override
@@ -832,6 +850,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
         return false;
     }
+
 
 }
 

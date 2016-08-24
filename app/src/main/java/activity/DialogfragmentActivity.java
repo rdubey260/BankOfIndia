@@ -112,6 +112,10 @@ public class DialogfragmentActivity extends Activity {
 
             img_aadharimg.getLayoutParams().height = 102;
             img_aadharimg.getLayoutParams().width = 102;
+        }else if (height <= 2560&& width <= 1440) {
+
+            img_aadharimg.getLayoutParams().height = 240;
+            img_aadharimg.getLayoutParams().width = 220;
         }
 
         Intent in = getIntent();
@@ -314,7 +318,17 @@ public class DialogfragmentActivity extends Activity {
 
         @Override
         public void onClick(View v) {
-            startScan(preference);
+
+            MarshMelloPermission marshMallowPermission = new MarshMelloPermission(DialogfragmentActivity.this);
+            if (!marshMallowPermission.checkPermissionForCamera()) {
+                marshMallowPermission.requestPermissionForCamera();
+            }else{
+                if (!marshMallowPermission.checkPermissionForExternalStorage()) {
+                    marshMallowPermission.requestPermissionForExternalStorage();
+                }else {
+                    startScan(preference);
+                }
+            }
         }
     }
 
