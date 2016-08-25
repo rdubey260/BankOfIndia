@@ -99,14 +99,17 @@ public class PickImageFragment extends Fragment {
     }
 
     public void openCamera() {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        File file = createImageFile();
-        file.getParentFile().mkdirs();
-        fileUri = Uri.fromFile(file);
-        if (file != null) {
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-            startActivityForResult(cameraIntent, ScanConstants.START_CAMERA_REQUEST_CODE);
-        }
+
+
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            File file = createImageFile();
+            file.getParentFile().mkdirs();
+            fileUri = Uri.fromFile(file);
+            if (file != null) {
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                startActivityForResult(cameraIntent, ScanConstants.START_CAMERA_REQUEST_CODE);
+            }
+
     }
 
     private File createImageFile() {
