@@ -47,6 +47,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import bean.UserDataInfoBean;
 
@@ -155,14 +156,18 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                validAadharNo();
+                //  validAadharNo(etNewAadhaarNo.getText().toString());
+                String ss= String.valueOf(s).trim();
+                if (ss.toString().trim().length() <= 12 ) {
+                        validateAadharNumber(ss);
+                }
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().trim().length() == 0) {
 
+                if (s.toString().trim().length() == 0) {
                     etNewAadhaarNo.setError(null);
                 }
             }
@@ -200,9 +205,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (etCoustomerId.getText().toString().trim().length() < 9) {
-
+                if (etCoustomerId.getText().toString().trim().length() < 9)
+                {
                     etCoustomerId.setError("Enter Valid Id");
+
                 }
 
             }
@@ -276,12 +282,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (validAadharName() && validAadharNo() && validImage()) {
+                String upDateAdarNo = etNewAadhaarNo.getText().toString();
+                String upDateAdrName = etNameInAadhaar.getText().toString();
 
-
-                    String upDateAdarNo = etNewAadhaarNo.getText().toString();
-                    String upDateAdrName = etNameInAadhaar.getText().toString();
-
+                if (validAadharName() && validateAadharNumber(upDateAdarNo) && validImage()) {
 
                     ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
@@ -737,10 +741,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             MarshMelloPermission marshMallowPermission = new MarshMelloPermission(AadhaarSeedingSearchActivity.this);
             if (!marshMallowPermission.checkPermissionForCamera()) {
                 marshMallowPermission.requestPermissionForCamera();
-            }else{
+            } else {
                 if (!marshMallowPermission.checkPermissionForExternalStorage()) {
-                marshMallowPermission.requestPermissionForExternalStorage();
-            }else {
+                    marshMallowPermission.requestPermissionForExternalStorage();
+                } else {
                     startScan(preference);
                 }
             }
@@ -749,9 +753,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     protected void startScan(int preference) {
 
-            Intent intent = new Intent(this, ScanActivity.class);
-            intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
-            startActivityForResult(intent, REQUEST_CODE);
+        Intent intent = new Intent(this, ScanActivity.class);
+        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
+        startActivityForResult(intent, REQUEST_CODE);
 
     }
 
@@ -775,9 +779,9 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validAadharNo() {
+    /*public boolean validAadharNo(String aadharNumber) {
 
-        if (etNewAadhaarNo.getText().toString().trim().length() < 12) {
+       *//* if (etNewAadhaarNo.getText().toString().trim().length() < 12) {
             //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
             etNewAadhaarNo.setError("Enter valid aadhaar no ");
 
@@ -786,7 +790,31 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
             etNewAadhaarNo.setError(null);
             return true;
         }
-        return false;
+        return false;*//*
+        Pattern aadharPattern = Pattern.compile("\\d{12}");
+        boolean isValidAadhar = aadharPattern.matcher(aadharNumber).matches();
+            if (isValidAadhar) {
+                isValidAadhar = Verhoeff.validateVerhoeff(aadharNumber);
+            } else {
+                //Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
+                etNewAadhaarNo.setError("Enter Valid Aadhaar No");
+            }
+
+        return isValidAadhar;
+    }
+*/
+    public  boolean validateAadharNumber(String aadharNumber) {
+        Pattern aadharPattern = Pattern.compile("\\d{12}");
+        boolean isValidAadhar = aadharPattern.matcher(aadharNumber).matches();
+        if (isValidAadhar) {
+            isValidAadhar = VerhoeffAlgorithm.validateVerhoeff(aadharNumber);
+            if (isValidAadhar == false) {
+                etNewAadhaarNo.setError("Invalid aadhaar number");
+            }
+        } else {
+            etNewAadhaarNo.setError("Incomplete Aadhaar number");
+        }
+        return isValidAadhar;
     }
 
     public boolean validAadharName() {
@@ -848,7 +876,61 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         return false;
     }
 
+}
 
+class VerhoeffAlgorithm {
+    static int[][] d = new int[][]
+            {
+                    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+                    {1, 2, 3, 4, 0, 6, 7, 8, 9, 5},
+                    {2, 3, 4, 0, 1, 7, 8, 9, 5, 6},
+                    {3, 4, 0, 1, 2, 8, 9, 5, 6, 7},
+                    {4, 0, 1, 2, 3, 9, 5, 6, 7, 8},
+                    {5, 9, 8, 7, 6, 0, 4, 3, 2, 1},
+                    {6, 5, 9, 8, 7, 1, 0, 4, 3, 2},
+                    {7, 6, 5, 9, 8, 2, 1, 0, 4, 3},
+                    {8, 7, 6, 5, 9, 3, 2, 1, 0, 4},
+                    {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
+            };
+    static int[][] p = new int[][]
+            {
+                    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+                    {1, 5, 7, 6, 2, 8, 3, 0, 9, 4},
+                    {5, 8, 0, 3, 7, 9, 6, 1, 4, 2},
+                    {8, 9, 1, 6, 0, 4, 3, 5, 2, 7},
+                    {9, 4, 5, 3, 1, 2, 6, 8, 7, 0},
+                    {4, 2, 8, 6, 5, 7, 3, 9, 0, 1},
+                    {2, 7, 9, 3, 8, 0, 6, 4, 1, 5},
+                    {7, 0, 4, 6, 9, 1, 3, 2, 5, 8}
+            };
+    static int[] inv = {0, 4, 3, 2, 1, 5, 6, 7, 8, 9};
+
+    public static boolean validateVerhoeff(String num) {
+        int c = 0;
+        int[] myArray = StringToReversedIntArray(num);
+        for (int i = 0; i < myArray.length; i++) {
+            c = d[c][p[(i % 8)][myArray[i]]];
+        }
+
+        return (c == 0);
+    }
+
+    private static int[] StringToReversedIntArray(String num) {
+        int[] myArray = new int[num.length()];
+        for (int i = 0; i < num.length(); i++) {
+            myArray[i] = Integer.parseInt(num.substring(i, i + 1));
+        }
+        myArray = Reverse(myArray);
+        return myArray;
+    }
+
+    private static int[] Reverse(int[] myArray) {
+        int[] reversed = new int[myArray.length];
+        for (int i = 0; i < myArray.length; i++) {
+            reversed[i] = myArray[myArray.length - (i + 1)];
+        }
+        return reversed;
+    }
 }
 
 

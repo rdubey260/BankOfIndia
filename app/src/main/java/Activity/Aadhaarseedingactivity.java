@@ -127,6 +127,7 @@ public class Aadhaarseedingactivity extends AppCompatActivity {
                         Toast.makeText(Aadhaarseedingactivity.this, "Enter at least one field ", Toast.LENGTH_LONG).show();
                     }
 
+
             }
         });
 

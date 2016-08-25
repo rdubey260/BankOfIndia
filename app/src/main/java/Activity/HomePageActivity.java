@@ -48,13 +48,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         Intent in = getIntent();
         userName= in.getStringExtra("mytext");
-
         tvuname.setText(userName);
 
         btfirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePageActivity.this, CustomerVerificationActivity.class);
+
                 startActivity(i);
             }
         });
@@ -75,8 +75,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePageActivity.this, AadhaarSeedingSearchActivity.class);
-                i.putExtra("name",userName);
-                i.putExtra("Date",dt);
+                i.putExtra("uname",userName);
+                i.putExtra("tDate",dt);
                 startActivity(i);
             }
         });
