@@ -586,74 +586,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         return stream.toByteArray();
     }
 
-    /*
-        public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight) { // BEST QUALITY MATCH
 
-            //First decode with inJustDecodeBounds=true to check dimensions
-            final BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(path, options);
-
-            // Calculate inSampleSize, Raw height and width of image
-            final int height = options.outHeight;
-            final int width = options.outWidth;
-            options.inPreferredConfig = Bitmap.Config.RGB_565;
-            int inSampleSize = 1;
-
-            if (height > reqHeight) {
-                inSampleSize = Math.round((float) height / (float) reqHeight);
-            }
-            int expectedWidth = width / inSampleSize;
-
-            if (expectedWidth > reqWidth) {
-                //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
-                inSampleSize = Math.round((float) width / (float) reqWidth);
-            }
-
-            options.inSampleSize = inSampleSize;
-
-            // Decode bitmap with inSampleSize set
-            options.inJustDecodeBounds = false;
-
-}    */
-  /*  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        *//*if (requestCode == CAMERA_REQUEST) {
-            //Get our saved file into a bitmap object:
-           File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-            bitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 500, 500);
-//	        ImageView imageView = (ImageView) findViewById(R.id.Imageprev);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            imgString = Base64.encodeToString(getBytesFromBitmap(bitmap), Base64.NO_WRAP);
-            imgAadhar.setImageBitmap(bitmap);
-
-    }*//*
-
-
-        if (resultCode == RESULT_OK) {
-
-            if (requestCode == CAMERA_CAPTURE) {
-                // get the Uri for the captured image
-
-                picUri = data.getData();
-                performCrop();
-            }
-            // user is returning from cropping the image
-            else if (requestCode == CROP_PIC) {
-                // get the returned data
-                Bundle extras = data.getExtras();
-                // get the cropped bitmap
-                Bitmap thePic = extras.getParcelable("data");
-                picByte = getImageBytes(thePic);
-                setProfileImageByte(thePic, picByte);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                thePic.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                imgString = Base64.encodeToString(getBytesFromBitmap(thePic), Base64.NO_WRAP);
-                imgAadhar.setImageBitmap(thePic);
-
-            }
-        }
-    }*/
 
 
     public String getPath(Uri uri) {
