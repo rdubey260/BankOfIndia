@@ -263,7 +263,7 @@
                 android:layout_marginRight="1dp"
                 android:background="@drawable/message_pannel"
                 android:orientation="vertical"
-                android:padding="17dp"
+                android:padding="12dp"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -278,6 +278,7 @@
                         android:layout_height="wrap_content"
                         android:ems="8"
                         android:text="Name"
+                        android:textStyle="bold"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
 
@@ -291,6 +292,7 @@
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:maxLines="2"
+                            android:textStyle="bold"
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff"
                             android:textSize="18sp" />
@@ -309,6 +311,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="8"
+                        android:textStyle="bold"
                         android:text="Mobile No"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
@@ -322,7 +325,7 @@
                             android:id="@+id/tv_mobileno_new"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
-
+                            android:textStyle="bold"
                             android:singleLine="true"
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff"
@@ -344,6 +347,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="8"
+                        android:textStyle="bold"
                         android:text="Aadhaar No"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
@@ -361,7 +365,7 @@
                             android:textColor="#ffffff"
                             android:textColorHint="#ffffff"
                             android:textSize="18sp"
-
+                            android:textStyle="bold"
                             />
                     </LinearLayout>
 
@@ -411,7 +415,7 @@
                             android:background="@drawable/login_scree_edt_background"
                             android:drawableRight="@drawable/login_scree_05"
                             android:hint="Name in Aadhaar"
-                            android:inputType="textPersonName"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                             android:lines="1"
                             android:padding="5dp"
                             android:singleLine="true"

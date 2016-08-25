@@ -26,14 +26,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -58,7 +55,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
     private static final String RESPONSE_CODE = null;
     EditText etAccountNo, etCoustomerId, etNewAadhaarNo, etNameInAadhaar;
-    TextView tvvAdhr, tvMobile, tvNameCustomer;
+    TextView tvvAdhr, tvMobile, tvNameCustomer,tvNamestatic;
     Button btnSearch, btnSave, btnreset, btnnclear;
 
     ArrayList<UserDataInfoBean> userinfoList = new ArrayList<>();
@@ -94,7 +91,7 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         tvMobile = (TextView) findViewById(R.id.tv_mobileno_new);
         tvNameCustomer = (TextView) findViewById(R.id.tv_name_new);
         /*tv_error = (TextView) findViewById(R.id.tv_error);*/
-
+        tvNamestatic = (TextView) findViewById(R.id.tv_name);
         tvName = (TextView) findViewById(R.id.tvuname1);
         tvTime = (TextView) findViewById(R.id.tvDATe);
         btnSave = (Button) findViewById(R.id.btn_save_new);
@@ -105,6 +102,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         llSeeding = (LinearLayout) findViewById(R.id.LinearlayoutSeeding);
         llShowDetails = (LinearLayout) findViewById(R.id.linear_layout_panal);
         imgAadhar = (ImageView) findViewById(R.id.img_Aadhar);
+
+
         imgAadhar.setOnClickListener(new ScanButtonClickListener(ScanConstants.OPEN_CAMERA));
 
         SharedPreferences prefs = getSharedPreferences("loginData", MODE_PRIVATE);
@@ -136,8 +135,8 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             imgAadhar.getLayoutParams().height = 102;
             imgAadhar.getLayoutParams().width = 102;
-        } else if (height <= 2560 && width <= 1440) {
 
+        } else if (height <= 2560&& width <= 1440) {
             imgAadhar.getLayoutParams().height = 240;
             imgAadhar.getLayoutParams().width = 220;
         }
@@ -206,9 +205,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (etCoustomerId.getText().toString().trim().length() < 9) {
-
+                if (etCoustomerId.getText().toString().trim().length() < 9)
+                {
                     etCoustomerId.setError("Enter Valid Id");
+
                 }
 
             }
@@ -809,10 +809,10 @@ public class AadhaarSeedingSearchActivity extends AppCompatActivity {
         if (isValidAadhar) {
             isValidAadhar = VerhoeffAlgorithm.validateVerhoeff(aadharNumber);
             if (isValidAadhar == false) {
-                etNewAadhaarNo.setError("invalid Aadhar number");
+                etNewAadhaarNo.setError("Invalid aadhaar number");
             }
         } else {
-            etNewAadhaarNo.setError("invalid Aadhar no");
+            etNewAadhaarNo.setError("Incomplete Aadhaar number");
         }
         return isValidAadhar;
     }
