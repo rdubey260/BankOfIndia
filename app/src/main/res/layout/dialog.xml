@@ -95,7 +95,7 @@
                         android:background="@drawable/login_scree_edt_background"
                         android:drawableRight="@drawable/login_scree_05"
                         android:hint="Name as in Aadhaar"
-                        android:inputType="text"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                         android:lines="1"
                         android:padding="5dp"
                         android:singleLine="true"
