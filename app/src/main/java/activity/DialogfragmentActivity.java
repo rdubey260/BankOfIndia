@@ -41,6 +41,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import bean.UserDataInfoBean;
 
@@ -142,12 +143,10 @@ public class DialogfragmentActivity extends Activity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                upDateAdarNo = edtAdhrNo.getText().toString();
+                upDateAdrName = edtAdhrNoAsInAdr.getText().toString();
 
-                if (validAadharName() && validAadharNo() && validImage()) {
-
-
-                     upDateAdarNo = edtAdhrNo.getText().toString();
-                     upDateAdrName = edtAdhrNoAsInAdr.getText().toString();
+                if (validAadharName() && validateAadharNumber(upDateAdarNo) && validImage()) {
 
 
                    ConnectivityManager ConnectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -174,11 +173,10 @@ public class DialogfragmentActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (edtAdhrNo.getText().toString().trim().length() < 12) {
-
-                    edtAdhrNo.setError("Enter Valid Id");
+                String ss= String.valueOf(s).trim();
+                if (ss.toString().trim().length() <= 12 ) {
+                    validateAadharNumber(ss);
                 }
-
             }
 
             @Override
@@ -363,18 +361,18 @@ public class DialogfragmentActivity extends Activity {
         return stream.toByteArray();
     }
 
-    public boolean validAadharNo() {
-
-        if (edtAdhrNo.getText().toString().trim().length() < 12) {
-            //  Toast.makeText(AadhaarSeedingSearchActivity.this, "Enter Valid Aadhaar No", Toast.LENGTH_SHORT).show();
-            edtAdhrNo.setError("Enter valid aadhaar no ");
-
+    public  boolean validateAadharNumber(String aadharNumber) {
+        Pattern aadharPattern = Pattern.compile("\\d{12}");
+        boolean isValidAadhar = aadharPattern.matcher(aadharNumber).matches();
+        if (isValidAadhar) {
+            isValidAadhar = VerhoeffAlgorithm.validateVerhoeff(aadharNumber);
+            if (isValidAadhar == false) {
+                edtAdhrNo.setError("invalid Aadhar number");
+            }
         } else {
-
-            edtAdhrNo.setError(null);
-            return true;
+            edtAdhrNo.setError("invalid Aadhar no");
         }
-        return false;
+        return isValidAadhar;
     }
 
     public boolean validAadharName() {
@@ -402,4 +400,3 @@ public class DialogfragmentActivity extends Activity {
     }
 
 }
-
