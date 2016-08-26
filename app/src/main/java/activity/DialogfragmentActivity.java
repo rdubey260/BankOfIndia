@@ -54,7 +54,7 @@ public class DialogfragmentActivity extends Activity {
 
     ProgressDialog pDialog;
     Reader in;
-   // Dialog dialog;
+    // Dialog dialog;
     String UserCode, BranchCode, ZoneCode, AccountNo, RecordNo;
     EditText edtAdhrNo;
     EditText edtAdhrNoAsInAdr;
@@ -63,7 +63,7 @@ public class DialogfragmentActivity extends Activity {
     private static final int REQUEST_CODE = 99;
     Bitmap bitmap;
     String imgString;
-    String upDateAdarNo,upDateAdrName;
+    String upDateAdarNo, upDateAdrName;
 
 
     @Override
@@ -112,7 +112,7 @@ public class DialogfragmentActivity extends Activity {
 
             img_aadharimg.getLayoutParams().height = 102;
             img_aadharimg.getLayoutParams().width = 102;
-        }else if (height <= 2560&& width <= 1440) {
+        } else if (height <= 2560 && width <= 1440) {
 
             img_aadharimg.getLayoutParams().height = 240;
             img_aadharimg.getLayoutParams().width = 220;
@@ -149,9 +149,9 @@ public class DialogfragmentActivity extends Activity {
                 if (validAadharName() && validateAadharNumber(upDateAdarNo) && validImage()) {
 
 
-                   ConnectivityManager ConnectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-                   NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-                  if (networkInfo != null && networkInfo.isConnected() == true) {
+                    ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected() == true) {
 
                         UpdateUserData getUserData = new UpdateUserData();
                         getUserData.execute(upDateAdarNo, upDateAdrName, AccountNo, RecordNo);
@@ -173,8 +173,8 @@ public class DialogfragmentActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String ss= String.valueOf(s).trim();
-                if (ss.toString().trim().length() <= 12 ) {
+                String ss = String.valueOf(s).trim();
+                if (ss.toString().trim().length() <= 12) {
                     validateAadharNumber(ss);
                 }
             }
@@ -190,13 +190,12 @@ public class DialogfragmentActivity extends Activity {
     }
 
 
-
     class UpdateUserData extends AsyncTask<String, Void, String> {
 
 
         @Override
         protected void onPreExecute() {
-           pDialog = new ProgressDialog(DialogfragmentActivity.this);
+            pDialog = new ProgressDialog(DialogfragmentActivity.this);
             pDialog.setMessage("Updating....");
             pDialog.show();
         }
@@ -295,7 +294,7 @@ public class DialogfragmentActivity extends Activity {
                 Toast.makeText(DialogfragmentActivity.this, json.toString(), Toast.LENGTH_LONG).show();
                 pDialog.dismiss();
             }
-                  finish();
+            finish();
 
 
         }
@@ -319,10 +318,10 @@ public class DialogfragmentActivity extends Activity {
             MarshMelloPermission marshMallowPermission = new MarshMelloPermission(DialogfragmentActivity.this);
             if (!marshMallowPermission.checkPermissionForCamera()) {
                 marshMallowPermission.requestPermissionForCamera();
-            }else{
+            } else {
                 if (!marshMallowPermission.checkPermissionForExternalStorage()) {
                     marshMallowPermission.requestPermissionForExternalStorage();
-                }else {
+                } else {
                     startScan(preference);
                 }
             }
@@ -330,6 +329,7 @@ public class DialogfragmentActivity extends Activity {
     }
 
     protected void startScan(int preference) {
+
         Intent intent = new Intent(this, ScanActivity.class);
         intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference);
         startActivityForResult(intent, REQUEST_CODE);
@@ -361,16 +361,16 @@ public class DialogfragmentActivity extends Activity {
         return stream.toByteArray();
     }
 
-    public  boolean validateAadharNumber(String aadharNumber) {
+    public boolean validateAadharNumber(String aadharNumber) {
         Pattern aadharPattern = Pattern.compile("\\d{12}");
         boolean isValidAadhar = aadharPattern.matcher(aadharNumber).matches();
         if (isValidAadhar) {
             isValidAadhar = VerhoeffAlgorithm.validateVerhoeff(aadharNumber);
             if (isValidAadhar == false) {
-                edtAdhrNo.setError("invalid Aadhar number");
+                edtAdhrNo.setError("Invalid Aadhar number");
             }
         } else {
-            edtAdhrNo.setError("invalid Aadhar no");
+            edtAdhrNo.setError("Incomplete Aadhaar number");
         }
         return isValidAadhar;
     }
